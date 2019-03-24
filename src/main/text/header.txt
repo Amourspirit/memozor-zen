@@ -1,0 +1,17 @@
+// ==UserScript==
+// @name            @FULL_NAME@
+// @namespace       https://github.com/Amourspirit/@REPOSITORY_NAME@
+// @version         @BUILD_NUMBER@
+// @description     @DESCRIPTION@
+// @author          @AUTHOR@
+// @run-at          document-end
+// @include         /^https?:\/\/www.memozor.com\/.*$/
+// @noframes
+// @license         @LICENSE@
+// @homepageURL     https://github.com/Amourspirit/@REPOSITORY_NAME@/
+// @update          https://github.com/Amourspirit/@REPOSITORY_NAME@/raw/master/dist/@SCRIPT_NAME@.user.js
+// @downloadURL     https://github.com/Amourspirit/@REPOSITORY_NAME@/raw/master/dist/@SCRIPT_NAME@.user.js
+// @contributionURL https://bit.ly/1QIN2Cs
+// @require         https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
+// @grant           none
+// ==/UserScript==

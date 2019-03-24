@@ -1,0 +1,68 @@
+{
+  "_name": "zen-www-memozor-com",
+  "_debuglevel": 4,
+  "_debugRemoveComment": true,
+  "_fullName": "Zen for www.memozor.com games",
+  "_repositoryName": "memozor-zen",
+  "name": "memozor-zen",
+  "version": "1.0.0",
+  "description": "Userscript that allows clean fullscreen game play at memozor.com",
+  "main": "TinyMce_for_Evernote.user.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amourspirit/memozor-zen.git"
+  },
+  "keywords": [
+    "memory",
+    "games",
+    "memozor",
+    "userscript",
+    "zen"
+  ],
+  "contributors": [
+    {
+      "name": "Paul Moss"
+    }
+  ],
+  "author": "Paul Moss",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Amourspirit/memozor-zen/issues"
+  },
+  "homepage": "https://github.com/Amourspirit/memozor-zen#readme",
+  "devDependencies": {
+    "@ephox/tslint-rules": "latest",
+    "@types/depcheck": "latest",
+    "@types/jquery": "^3.3.29",
+    "ajv": "latest",
+    "awesome-typescript-loader": "latest",
+    "depcheck": "latest",
+    "grunt": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-htmlmin": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-if-next": "latest",
+    "grunt-remove-comments": "latest",
+    "grunt-shell": "latest",
+    "grunt-text-replace": "latest",
+    "grunt-tslint": "latest",
+    "grunt-zip": "latest",
+    "jquery": "^3.3.1",
+    "load-grunt-tasks": "latest",
+    "rollup": "latest",
+    "rollup-plugin-commonjs": "latest",
+    "rollup-plugin-inject": "^2.2.0",
+    "rollup-plugin-node-resolve": "latest",
+    "strongly-typed-events": "latest",
+    "ts-loader": "latest",
+    "tslib": "latest",
+    "tslint": "latest",
+    "typescript": "latest"
+  }
+}

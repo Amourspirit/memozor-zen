@@ -1,0 +1,106 @@
+import { ElementLoader } from './class_ElementLoader';
+import { ElementLoad } from './class_ElementLoad';
+import { ElementLocation, DebugLevel } from './enums';
+import { Log } from './class_Log';
+import { appSettings } from './appSettings';
+import { IEventArgs } from './class_EventArgs';
+// import { exceptionMessages } from './appResourceString';
+// import { ResourceTest } from './class_ResourceTest';
+import './ext';
+
+export class MainElementLoader extends ElementLoader {
+
+  protected onBeforeStart(args: IEventArgs): void {
+    // @debug start
+    const methodName: string = 'onBeforeStart';
+    const appDebugLevel = appSettings.debugLevel;
+    const levelDebug = DebugLevel.debug;
+    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
+    // @debug end
+    if (args.cancel === true) {
+      return;
+    }
+    this.addStyleCss();
+    // @debug start
+    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    // @debug end
+  }
+ /*  private testForResource(key: string, timing: number = 500, attempts: number = 30, ...globalRes: string[]) {
+    if (this.hasElement(key)) {
+      this.dispose();
+      throw new Error(String.Format(exceptionMessages.argKeyExist, 'key', key));
+    }
+    const lt: ResourceTest = new ResourceTest(timing, attempts, ...globalRes);
+    this.addElement(key, lt);
+  } */
+  // #region Style css
+  private addStyleCss(): void {
+    // @debug start
+    const methodName: string = 'addStyleCss';
+    const appDebugLevel = appSettings.debugLevel;
+    const levelDebug = DebugLevel.debug;
+    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
+    // @debug end
+    this.addStyle('styleCss', this.getStyleCss(), ElementLocation.head);
+    // @debug start
+    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    // @debug end
+  }
+  private getStyleCss(): string {
+    const css = '// BUILD_INCLUDE("./scratch/css/style.min.css")';
+    return css;
+  }
+  //  #end Style css
+ /*  private _addStyleLink(key: string, srcLink: string, elementLocation: ElementLocation = ElementLocation.head): void {
+    // @debug start
+    const methodName: string = 'EvernoteElementLoader.addStyleLink';
+    const appDebugLevel = appSettings.debugLevel;
+    const levelDebug = DebugLevel.debug;
+    if (appDebugLevel >= levelDebug) {
+      Log.debug(`${methodName}: Entered`);
+      Log.debug(`${methodName}: Adding Csslink for key: ${key} and src ${srcLink}`);
+    }
+    // @debug end
+    const elCss = new ElementLoad({
+      scriptLocation: elementLocation,
+      elementCreate: {
+        elementTag: 'link',
+        elementAttributes: {
+          type: 'text/css',
+          href: srcLink,
+          rel: 'stylesheet'
+        }
+      }
+    });
+    this.addElement(key, elCss);
+    // @debug start
+    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    // @debug end
+  } */
+
+  private addStyle(key: string, styelcontent: string, elementLocation: ElementLocation = ElementLocation.head): void {
+    // @debug start
+    const methodName: string = 'EvernoteElementLoader.addStyle';
+    const appDebugLevel = appSettings.debugLevel;
+    const levelDebug = DebugLevel.debug;
+    if (appDebugLevel >= levelDebug) {
+      Log.debug(`${methodName}: Entered`);
+      Log.debug(`${methodName}: Adding Csslink for key: ${key}`);
+    }
+    // @debug end
+    const elCss = new ElementLoad({
+      scriptLocation: elementLocation,
+      elementCreate: {
+        elementTag: 'style',
+        elementText: styelcontent,
+        elementAttributes: {
+          type: 'text/css'
+        }
+      }
+    });
+    this.addElement(key, elCss);
+    // @debug start
+    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    // @debug end
+  }
+}
