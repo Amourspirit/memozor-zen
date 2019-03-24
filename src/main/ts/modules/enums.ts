@@ -14,25 +14,25 @@ export enum PriorityLevel {
  */
 export enum DebugLevel {
   /**
-   * Nothing will be logged
-   */
-  none,
-  /**
    * Everyting will be loged
    */
   debug,
   /**
-   * Everything but debug info will be logged
-   */
+  * Everything but debug info will be logged
+  */
   error,
   /**
-   * Warnings and info will be logged
-   */
+  * Warnings and info will be logged
+  */
   warn,
   /**
-   * Only info will be logged
-   */
+  * Only info will be logged
+  */
   info,
+  /**
+  * Nothing will be logged
+  */
+  none,
 }
 /**
  * Determins where the element will be loaded
