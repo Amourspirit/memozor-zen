@@ -106,6 +106,10 @@ div.mem-fs-ctl {
   width: 100%;
   text-align: center;
 }
+/* Remove border from game */
+div#mem-fs-game-wrap div#game {
+  border: 0px !important;
+}
 div#mem-ctl-wrap div.mem-fs-ctl {
   display: inline-block;
   margin: 0 0 10px 0;
