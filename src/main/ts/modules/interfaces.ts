@@ -84,16 +84,3 @@ export interface IElementCreate {
   attribs?: IKeyValueGeneric<string>;
   children?: IElementCreate[];
 }
-/**
- * Elements creation arguments
- * @param elementTag (required) The tag of the element such as div, script, style
- * @param elementText (optional) The text/html to add to the element content.
- * @param elementAttributes (optional) Array of Attributes and values to add to the element.
- * @param childElements {IElementsCreate;} (optional) Child Elements to create of the parent.
- */
-export interface IElementsCreate extends IElementCreate {
-  /**
-   * Child Elements to create of the parent.
-   */
-  children?: IElementCreate[];
-}
