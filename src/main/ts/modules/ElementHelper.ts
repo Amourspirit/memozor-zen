@@ -60,20 +60,20 @@ export const elementCreate = (args: IElementCreate): HTMLElement => {
   }
   // #endregion debug
 
-  const htmlNode: HTMLElement = utilCreateElement(args.elementTag); // D.createElement('script');
-  if (args.elementAttributes) {
-    for (const key in args.elementAttributes) {
-      if (args.elementAttributes.hasOwnProperty(key)) {
-        const value = args.elementAttributes[key];
+  const htmlNode: HTMLElement = utilCreateElement(args.tag); // D.createElement('script');
+  if (args.attribs) {
+    for (const key in args.attribs) {
+      if (args.attribs.hasOwnProperty(key)) {
+        const value = args.attribs[key];
         htmlNode.setAttribute(key, value);
       }
     }
   }
-  if (args.elementHtml && args.elementHtml.length > 0) {
-    htmlNode.innerHTML = args.elementHtml;
+  if (args.html && args.html.length > 0) {
+    htmlNode.innerHTML = args.html;
   }
-  if (args.elementText && args.elementText.length > 0) {
-    htmlNode.textContent = args.elementText;
+  if (args.text && args.text.length > 0) {
+    htmlNode.textContent = args.text;
   }
   // #region [debug]
   if (appDebugLevel >= levelDebug) {
@@ -131,8 +131,8 @@ export const elementsCreate = (args: IElementCreate): HTMLElement => {
   }
   // #endregion debug
   const parentEl: HTMLElement = elementCreate(args);
-  if (args.childElements) {
-    addElementRecursive(parentEl, args.childElements);
+  if (args.children) {
+    addElementRecursive(parentEl, args.children);
   }
   // #region [debug]
   if (appDebugLevel >= levelDebug) {
@@ -153,8 +153,8 @@ const addElementRecursive = (parentElement: Element, args: IElementCreate[] | un
       const el = args[i];
       const childEl = elementCreate(el);
       parentElement.appendChild(childEl);
-      if (el.childElements) {
-        addElementRecursive(childEl, args[i].childElements);
+      if (el.children) {
+        addElementRecursive(childEl, args[i].children);
       }
     }
   }

@@ -59,29 +59,30 @@ export interface IIndexValueGeneric<T> {
 
 /**
  * Elements creation arguments
- * @param elementTag (required) The tag of the element such as div, script, style
- * @param elementText (optional) The text to add to the element content.
- * @param elementHtml (optional) The html to add to the element content.
- * @param elementAttributes (optional) Array of Attributes and values to add to the element.
+ * @param tag (required) The tag of the element such as div, script, style
+ * @param text (optional) The text to add to the element content.
+ * @param html (optional) The html to add to the element content.
+ * @param attribs (optional) Array of Attributes and values to add to the element.
+ * @param children (optional) child elements to add to the current element.
  */
 export interface IElementCreate {
   /**
    * The tag of the element such as div, script, style
    */
-  elementTag: string;
+  tag: string;
   /**
    * text only to add to the element content.
    */
-  elementText?: string;
+  text?: string;
   /**
    * html to add to the element content.
    */
-  elementHtml?: string;
+  html?: string;
   /**
    * Any extra attributes to apply to element such as scrolling
    */
-  elementAttributes?: IKeyValueGeneric<string>;
-  childElements?: IElementCreate[];
+  attribs?: IKeyValueGeneric<string>;
+  children?: IElementCreate[];
 }
 /**
  * Elements creation arguments
@@ -94,5 +95,5 @@ export interface IElementsCreate extends IElementCreate {
   /**
    * Child Elements to create of the parent.
    */
-  childElements?: IElementCreate[];
+  children?: IElementCreate[];
 }

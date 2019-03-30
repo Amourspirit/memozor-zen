@@ -50,23 +50,23 @@ export class Fullscreen {
     html += ' class="enfs-button"><span class="enfs-btntooltip">Click to open note in full screen view</span></div>';
     return html; */
     const htmlArgs: IElementCreate = {
-      elementTag: 'div',
-      elementAttributes: {
+      tag: 'div',
+      attribs: {
         class: 'mem-fs-button-parent'
       },
-      childElements: [{
-        elementTag: 'div',
-        elementAttributes: {
+      children: [{
+        tag: 'div',
+        attribs: {
           id: appSettings.buttonId,
           class: 'mem-fs-button'
         }
       },
       {
-        elementTag: 'span',
-        elementAttributes: {
+        tag: 'span',
+        attribs: {
           class: 'mem-fs-btntooltip'
         },
-        elementText: 'Click to open game in full screen view'
+        text: 'Click to open game in full screen view'
       }]
     };
     const btnDiv: HTMLElement = elementsCreate(htmlArgs);
@@ -173,8 +173,8 @@ export class Fullscreen {
   }
   private getGameWrapper(): HTMLElement {
     const htmlArgs: IElementCreate = {
-      elementTag: 'div',
-      elementAttributes: {
+      tag: 'div',
+      attribs: {
         id: this.lWrapDivId,
         class: `mem-fs-no-sel ${this.getWrapperBgClass()}`
       }

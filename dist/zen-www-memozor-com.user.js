@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Zen for www.memozor.com games
 // @namespace       https://github.com/Amourspirit/memozor-zen
-// @version         1.1.3
+// @version         1.1.4
 // @description     Userscript that allows clean fullscreen game play at memozor.com
 // @author          Paul Moss
 // @run-at          document-end
@@ -1144,27 +1144,27 @@
         targ.appendChild(e);
     };
     var elementCreate = function (args) {
-        var htmlNode = utilCreateElement(args.elementTag); 
-        if (args.elementAttributes) {
-            for (var key in args.elementAttributes) {
-                if (args.elementAttributes.hasOwnProperty(key)) {
-                    var value = args.elementAttributes[key];
+        var htmlNode = utilCreateElement(args.tag); 
+        if (args.attribs) {
+            for (var key in args.attribs) {
+                if (args.attribs.hasOwnProperty(key)) {
+                    var value = args.attribs[key];
                     htmlNode.setAttribute(key, value);
                 }
             }
         }
-        if (args.elementHtml && args.elementHtml.length > 0) {
-            htmlNode.innerHTML = args.elementHtml;
+        if (args.html && args.html.length > 0) {
+            htmlNode.innerHTML = args.html;
         }
-        if (args.elementText && args.elementText.length > 0) {
-            htmlNode.textContent = args.elementText;
+        if (args.text && args.text.length > 0) {
+            htmlNode.textContent = args.text;
         }
         return htmlNode;
     };
     var elementsCreate = function (args) {
         var parentEl = elementCreate(args);
-        if (args.childElements) {
-            addElementRecursive(parentEl, args.childElements);
+        if (args.children) {
+            addElementRecursive(parentEl, args.children);
         }
         return parentEl;
     };
@@ -1174,8 +1174,8 @@
                 var el = args[i];
                 var childEl = elementCreate(el);
                 parentElement.appendChild(childEl);
-                if (el.childElements) {
-                    addElementRecursive(childEl, args[i].childElements);
+                if (el.children) {
+                    addElementRecursive(childEl, args[i].children);
                 }
             }
         }
@@ -1192,7 +1192,7 @@
                 eventArgs.cancel = true;
                 return;
             }
-            if (this.lArgs.elementCreate.childElements) {
+            if (this.lArgs.elementCreate.children) {
                 var multiHtml = elementsCreate(this.lArgs.elementCreate);
                 elementAddToDoc(multiHtml, this.lArgs.scriptLocation);
             }
@@ -1232,9 +1232,9 @@
             var elCss = new ElementLoad({
                 scriptLocation: elementLocation,
                 elementCreate: {
-                    elementTag: 'style',
-                    elementText: styelcontent,
-                    elementAttributes: {
+                    tag: 'style',
+                    text: styelcontent,
+                    attribs: {
                         type: 'text/css'
                     }
                 }
@@ -1283,23 +1283,23 @@
         };
         Fullscreen.prototype.getButton = function () {
             var htmlArgs = {
-                elementTag: 'div',
-                elementAttributes: {
+                tag: 'div',
+                attribs: {
                     class: 'mem-fs-button-parent'
                 },
-                childElements: [{
-                        elementTag: 'div',
-                        elementAttributes: {
+                children: [{
+                        tag: 'div',
+                        attribs: {
                             id: appSettings.buttonId,
                             class: 'mem-fs-button'
                         }
                     },
                     {
-                        elementTag: 'span',
-                        elementAttributes: {
+                        tag: 'span',
+                        attribs: {
                             class: 'mem-fs-btntooltip'
                         },
-                        elementText: 'Click to open game in full screen view'
+                        text: 'Click to open game in full screen view'
                     }]
             };
             var btnDiv = elementsCreate(htmlArgs);
@@ -1360,8 +1360,8 @@
         };
         Fullscreen.prototype.getGameWrapper = function () {
             var htmlArgs = {
-                elementTag: 'div',
-                elementAttributes: {
+                tag: 'div',
+                attribs: {
                     id: this.lWrapDivId,
                     class: "mem-fs-no-sel " + this.getWrapperBgClass()
                 }
@@ -1430,14 +1430,14 @@
         };
         ControlToggle.prototype.insertToggle = function () {
             var html = {
-                elementTag: 'div',
-                elementAttributes: {
+                tag: 'div',
+                attribs: {
                     id: this.lDivtoggleId,
                     class: 'mem-fs-div-tog'
                 },
-                childElements: [{
-                        elementTag: 'i',
-                        elementAttributes: {
+                children: [{
+                        tag: 'i',
+                        attribs: {
                             class: 'mem-fs-tog up'
                         }
                     }]
@@ -1447,8 +1447,8 @@
         };
         ControlToggle.prototype.wrapControl = function () {
             var htmlWrap = {
-                elementTag: 'div',
-                elementAttributes: {
+                tag: 'div',
+                attribs: {
                     id: this.lDivWrapId,
                     class: 'mem-fs-toggle-ctl'
                 }

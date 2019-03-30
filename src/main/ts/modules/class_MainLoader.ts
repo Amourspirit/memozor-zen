@@ -91,9 +91,9 @@ export class MainElementLoader extends ElementLoader {
     const elCss = new ElementLoad({
       scriptLocation: elementLocation,
       elementCreate: {
-        elementTag: 'style',
-        elementText: styelcontent,
-        elementAttributes: {
+        tag: 'style',
+        text: styelcontent,
+        attribs: {
           type: 'text/css'
         }
       }

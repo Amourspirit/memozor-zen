@@ -41,14 +41,14 @@ export class ControlToggle {
   }
   private insertToggle(): void {
     const html: IElementCreate = {
-      elementTag: 'div',
-      elementAttributes: {
+      tag: 'div',
+      attribs: {
         id: this.lDivtoggleId,
         class: 'mem-fs-div-tog'
       },
-      childElements: [{
-        elementTag: 'i',
-        elementAttributes: {
+      children: [{
+        tag: 'i',
+        attribs: {
           class: 'mem-fs-tog up'
         }
       }]
@@ -64,8 +64,8 @@ export class ControlToggle {
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
     // #endregion debug
     const htmlWrap: IElementCreate = {
-      elementTag: 'div',
-      elementAttributes: {
+      tag: 'div',
+      attribs: {
         id: this.lDivWrapId,
         class: 'mem-fs-toggle-ctl'
       }

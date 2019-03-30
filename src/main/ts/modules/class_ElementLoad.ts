@@ -66,7 +66,7 @@ export class ElementLoad extends BaseElementLoad {
       eventArgs.cancel = true;
       return;
     }
-    if (this.lArgs.elementCreate.childElements) {
+    if (this.lArgs.elementCreate.children) {
       const multiHtml: HTMLElement = elementsCreate(this.lArgs.elementCreate);
       elementAddToDoc(multiHtml, this.lArgs.scriptLocation);
     } else {
