@@ -5,7 +5,8 @@
 // @description     @DESCRIPTION@
 // @author          @AUTHOR@
 // @run-at          document-end
-// @include         /^https?:\/\/www.memozor.com\/.*$/
+// @include         /^https?:\/\/www\.memozor\.com\/.*$/
+// @include         /^https?:\/\/memozor\.com\/.*$/
 // @noframes
 // @license         @LICENSE@
 // @homepageURL     https://github.com/Amourspirit/@REPOSITORY_NAME@/

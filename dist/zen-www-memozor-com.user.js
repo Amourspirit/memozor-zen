@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name            Zen for www.memozor.com games
 // @namespace       https://github.com/Amourspirit/memozor-zen
-// @version         1.1.2
+// @version         1.1.3
 // @description     Userscript that allows clean fullscreen game play at memozor.com
 // @author          Paul Moss
 // @run-at          document-end
-// @include         /^https?:\/\/www.memozor.com\/.*$/
+// @include         /^https?:\/\/www\.memozor\.com\/.*$/
+// @include         /^https?:\/\/memozor\.com\/.*$/
 // @noframes
 // @license         MIT
 // @homepageURL     https://github.com/Amourspirit/memozor-zen/
