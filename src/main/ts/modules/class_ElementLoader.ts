@@ -26,20 +26,20 @@ export class ElementLoader implements IDisposable {
     // Higher price to check using enumes each time so capture the values here
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered.`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered.`); }
     // #endregion debug
     if (key.length === 0) {
-      Log.error(`${appSettings.shortName}: addElement: key argument can not be an empty string`);
+      Log.Error(`${appSettings.shortName}: addElement: key argument can not be an empty string`);
       return;
     }
     if (this.lEvents.hasOwnProperty(key)) {
-      Log.error(`${appSettings.shortName}: addElement: key ${key} is already in the list of elemets and can not be added again`);
+      Log.Error(`${appSettings.shortName}: addElement: key ${key} is already in the list of elemets and can not be added again`);
       return;
     }
     this.lEvents[key] = e;
     this.lTotalScripts++;
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
   }
   public hasElement(key: string): boolean {
@@ -48,15 +48,15 @@ export class ElementLoader implements IDisposable {
     // Higher price to check using enumes each time so capture the values here
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered.`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered.`); }
     // #endregion debug
     if (key.length === 0) {
-      Log.debugWarn(`${appSettings.shortName}: addElement: key is empty`);
+      Log.DebugWarn(`${appSettings.shortName}: addElement: key is empty`);
       return false;
     }
     const reslut: boolean = this.lEvents.hasOwnProperty(key);
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
     return reslut;
   }
@@ -81,13 +81,13 @@ export class ElementLoader implements IDisposable {
     const methodName: string = 'ElementLoader.start';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered`); }
     // #endregion debug
     const onBeforeStartEventArgs = new EventArgs();
     this.onBeforeStart(onBeforeStartEventArgs);
     if (onBeforeStartEventArgs.cancel === true) {
       // #region [debug]
-      Log.debug(`${methodName}: Exiting due to event was canceled `);
+      Log.Debug(`${methodName}: Exiting due to event was canceled `);
       // #endregion debug
       return;
     }
@@ -101,7 +101,7 @@ export class ElementLoader implements IDisposable {
             return;
           }
           // #region [debug]
-          Log.debug(`${methodName}: Dispatching onTick for key: ${eArgs.key}`);
+          Log.Debug(`${methodName}: Dispatching onTick for key: ${eArgs.key}`);
           // #endregion debug
           this.lOnTick.dispatch(this, eArgs);
         });
@@ -114,7 +114,7 @@ export class ElementLoader implements IDisposable {
             return;
           }
           // #region [debug]
-          Log.debug(`${methodName}: Dispatching onTickExpired for key: ${eArgs.key}`);
+          Log.Debug(`${methodName}: Dispatching onTickExpired for key: ${eArgs.key}`);
           // #endregion debug
           this.lOnTickExpired.dispatch(this, eArgs);
         });
@@ -127,7 +127,7 @@ export class ElementLoader implements IDisposable {
             return;
           }
           // #region [debug]
-          Log.debug(`${methodName}: Dispatching onElementLoaded for key: ${eArgs.key}`);
+          Log.Debug(`${methodName}: Dispatching onElementLoaded for key: ${eArgs.key}`);
           // #endregion debug
           this.lOnElementLoaded.dispatch(this, eArgs);
         });
@@ -135,7 +135,7 @@ export class ElementLoader implements IDisposable {
       }
     }
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
     this.onAfterStart(new EventArgs());
   }
@@ -166,12 +166,12 @@ export class ElementLoader implements IDisposable {
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) {
-      Log.debug(`${methodName}: Entered.`);
-      Log.debug(`${methodName}: args key: ${args.key}`);
+      Log.Debug(`${methodName}: Entered.`);
+      Log.Debug(`${methodName}: args key: ${args.key}`);
     }
     // #endregion debug
     if (this.lEvents.hasOwnProperty(args.key) === false) {
-      Log.error(`${appSettings.shortName}: elementLoaded: key ${args.key} was not found to delete. This may be a serious error`);
+      Log.Error(`${appSettings.shortName}: elementLoaded: key ${args.key} was not found to delete. This may be a serious error`);
       return;
     } else {
       // delete the added script
@@ -179,7 +179,7 @@ export class ElementLoader implements IDisposable {
     }
     this.goForFinish();
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
   }
   private tick(args: ElementLoaderEventArgs): void {
@@ -189,12 +189,12 @@ export class ElementLoader implements IDisposable {
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) {
-      Log.debug(`${methodName}: Entered.`);
-      Log.debug(`${methodName}: tick for key ${args.key}`);
+      Log.Debug(`${methodName}: Entered.`);
+      Log.Debug(`${methodName}: tick for key ${args.key}`);
     }
     // #endregion debug
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
     return;
   }
@@ -205,8 +205,8 @@ export class ElementLoader implements IDisposable {
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) {
-      Log.debug(`${methodName}: Entered`);
-      Log.debug(`${methodName}: for key: ${args.key}`);
+      Log.Debug(`${methodName}: Entered`);
+      Log.Debug(`${methodName}: for key: ${args.key}`);
     }
     // #endregion debug
     // set the args loadFailed property
@@ -215,7 +215,7 @@ export class ElementLoader implements IDisposable {
     this.lEventsFailed.push(args.key);
     // event if the event failed we want to remove if from the list of events
     if (this.lEvents.hasOwnProperty(args.key) === false) {
-      Log.error(`${appSettings.shortName}: tickExpired: key ${args.key} was not found to delete. This may be a serious error`);
+      Log.Error(`${appSettings.shortName}: tickExpired: key ${args.key} was not found to delete. This may be a serious error`);
       return;
     } else {
       // delete the added script
@@ -223,7 +223,7 @@ export class ElementLoader implements IDisposable {
     }
     this.goForFinish();
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
     return;
   }
@@ -233,18 +233,18 @@ export class ElementLoader implements IDisposable {
     // Higher price to check using enumes each time so capture the values here
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered.`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered.`); }
     // #endregion debug
     if (this.lEventsFailed.length > 0) {
       // #region [debug]
-      Log.debug(`${methodName}: Failed to load all elements. Dispatching onElementsLoadFail()`);
+      Log.Debug(`${methodName}: Failed to load all elements. Dispatching onElementsLoadFail()`);
       // #endregion debug
       args.cancel = true;
       const eArgs: ElementsLoadFailArgs = new ElementsLoadFailArgs(this.lTotalScripts, this.lEventsFailed);
       this.lOnElementLoadFail.dispatch(this, eArgs);
     }
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
     return;
   }
@@ -253,12 +253,12 @@ export class ElementLoader implements IDisposable {
     const methodName: string = 'ElementLoader.goForFinish';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered`); }
     // #endregion debug
     const done: boolean = this.isElementsLoaded();
     if (done) {
       // #region [debug]
-      Log.debug(`${methodName}: All elemets are loaded dispatching onAllElementsLoaded`);
+      Log.Debug(`${methodName}: All elemets are loaded dispatching onAllElementsLoaded`);
       // #endregion debug
       const eArgs = new ElementsLoadedArgs(this.lTotalScripts);
       this.allElementsLoaded(eArgs);
@@ -267,11 +267,11 @@ export class ElementLoader implements IDisposable {
       }
     } else {
       // #region [debug]
-      Log.debug(`${methodName}: Not elemets are loaded yet`);
+      Log.Debug(`${methodName}: Not elemets are loaded yet`);
       // #endregion debug
     }
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
   }
   /*

@@ -32,7 +32,7 @@ export class IntervalManual extends Interval implements IIntervalManual {
     const methodName: string = 'IntervalManual.start';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered`); }
     // #endregion debug
     if (this.isStarted === true) {
       return;
@@ -40,7 +40,7 @@ export class IntervalManual extends Interval implements IIntervalManual {
     this.lIsStarted = true;
     super.startInterval();
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
   }
   public dispose(): void {
@@ -48,12 +48,12 @@ export class IntervalManual extends Interval implements IIntervalManual {
     const methodName: string = 'IntervalManual.dispose';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered`); }
     // #endregion debug
     this.lIsStarted = false;
     super.dispose();
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
   }
   /**

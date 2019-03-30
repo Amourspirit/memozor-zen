@@ -12,33 +12,33 @@ export const elementAddToDoc = (e: HTMLElement, nodeLocation: ElementLocation): 
   const methodName: string = 'elementAddToDoc';
   const appDebugLevel = appSettings.debugLevel;
   const levelDebug = DebugLevel.debug;
-  if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
+  if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered`); }
   // #endregion debug
   const D: Document = document;
   let targ: Element;
   switch (nodeLocation) {
     case ElementLocation.body:
       // #region [debug]
-      if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Case body`); }
+      if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Case body`); }
       // #endregion debug
       targ = D.getElementsByTagName('body')[0] || D.body;
       break;
     case ElementLocation.head:
       // #region [debug]
-      if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Case head`); }
+      if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Case head`); }
       // #endregion debug
       targ = D.getElementsByTagName('head')[0] || D.head;
       break;
     default:
       // #region [debug]
-      if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Case default: body, documentelement`); }
+      if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Case default: body, documentelement`); }
       // #endregion debug
       targ = D.getElementsByTagName('body')[0] || D.body || D.documentElement;
       break;
   }
   targ.appendChild(e);
   // #region [debug]
-  if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+  if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
   // #endregion debug
 };
 /**
@@ -56,7 +56,7 @@ export const elementCreate = (args: IElementCreate): HTMLElement => {
   const levelDebug = DebugLevel.debug;
 
   if (appDebugLevel >= levelDebug) {
-    Log.debug(`${methodName}: Entered.`);
+    Log.Debug(`${methodName}: Entered.`);
   }
   // #endregion debug
 
@@ -77,7 +77,7 @@ export const elementCreate = (args: IElementCreate): HTMLElement => {
   }
   // #region [debug]
   if (appDebugLevel >= levelDebug) {
-    Log.debug(`${methodName}: Leaving`);
+    Log.Debug(`${methodName}: Leaving`);
   }
   // #endregion debug
   return htmlNode;
@@ -127,7 +127,7 @@ export const elementsCreate = (args: IElementCreate): HTMLElement => {
   const levelDebug = DebugLevel.debug;
 
   if (appDebugLevel >= levelDebug) {
-    Log.debug(`${methodName}: Entered`);
+    Log.Debug(`${methodName}: Entered`);
   }
   // #endregion debug
   const parentEl: HTMLElement = elementCreate(args);
@@ -136,7 +136,7 @@ export const elementsCreate = (args: IElementCreate): HTMLElement => {
   }
   // #region [debug]
   if (appDebugLevel >= levelDebug) {
-    Log.debug(`${methodName}: Leaving`);
+    Log.Debug(`${methodName}: Leaving`);
   }
   // #endregion debug
   return parentEl;

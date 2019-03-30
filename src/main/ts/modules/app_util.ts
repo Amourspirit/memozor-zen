@@ -17,9 +17,9 @@ export const utilFnAsStringExist = (fnstring: string): boolean => {
   const levelDebug = DebugLevel.debug;
 
   if (appDebugLevel >= levelDebug) {
-    Log.debug(`${methodName}: Entered.`);
+    Log.Debug(`${methodName}: Entered.`);
   }
-  Log.debug(`${methodName} Looking for function: ${fnstring}`);
+  Log.Debug(`${methodName} Looking for function: ${fnstring}`);
   // #endregion debug
   // find object
   // see: https://stackoverflow.com/questions/42193262/element-implicitly-has-an-any-type-because-type-window-has-no-index-signatur
@@ -28,16 +28,16 @@ export const utilFnAsStringExist = (fnstring: string): boolean => {
   if (typeof fn === 'function') {
     // #region [debug]
     if (appDebugLevel >= levelDebug) {
-      Log.debug(`${methodName}: found function: ${fnstring}.`);
-      Log.debug(`${methodName}: Leaving.`);
+      Log.Debug(`${methodName}: found function: ${fnstring}.`);
+      Log.Debug(`${methodName}: Leaving.`);
     }
     // #endregion debug
     return true;
   } else {
     // #region [debug]
     if (appDebugLevel >= levelDebug) {
-      Log.debug(`${methodName}: unable to find function: ${fnstring}.`);
-      Log.debug(`${methodName}: Leaving.`);
+      Log.Debug(`${methodName}: unable to find function: ${fnstring}.`);
+      Log.Debug(`${methodName}: Leaving.`);
     }
     // #endregion debug
     return false;

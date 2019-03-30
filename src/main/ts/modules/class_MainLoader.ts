@@ -15,14 +15,14 @@ export class MainElementLoader extends ElementLoader {
     const methodName: string = 'onBeforeStart';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered`); }
     // #endregion debug
     if (args.cancel === true) {
       return;
     }
     this.addStyleCss();
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
   }
  /*  private testForResource(key: string, timing: number = 500, attempts: number = 30, ...globalRes: string[]) {
@@ -39,11 +39,11 @@ export class MainElementLoader extends ElementLoader {
     const methodName: string = 'addStyleCss';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered`); }
     // #endregion debug
     this.addStyle('styleCss', this.getStyleCss(), ElementLocation.head);
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
   }
   private getStyleCss(): string {
@@ -84,8 +84,8 @@ export class MainElementLoader extends ElementLoader {
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) {
-      Log.debug(`${methodName}: Entered`);
-      Log.debug(`${methodName}: Adding Csslink for key: ${key}`);
+      Log.Debug(`${methodName}: Entered`);
+      Log.Debug(`${methodName}: Adding Csslink for key: ${key}`);
     }
     // #endregion debug
     const elCss = new ElementLoad({
@@ -100,7 +100,7 @@ export class MainElementLoader extends ElementLoader {
     });
     this.addElement(key, elCss);
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
   }
 }

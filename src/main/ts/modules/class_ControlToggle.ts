@@ -14,7 +14,7 @@ export class ControlToggle {
     const methodName: string = 'ControlToggle.init';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered`); }
     // #endregion debug
     if (this.controlExist() === true) {
       this.wrapControl();
@@ -22,10 +22,10 @@ export class ControlToggle {
       this.insertToggle();
       this.addOnClick();
     } else {
-      Log.message(`Selector ${appSettings.controlSelector} is not found on this page`);
+      Log.Info(`Selector ${appSettings.controlSelector} is not found on this page`);
     }
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
   }
   private addControlClass(): void {
@@ -61,7 +61,7 @@ export class ControlToggle {
     const methodName: string = 'ControlToggle.wrapControl';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered`); }
     // #endregion debug
     const htmlWrap: IElementCreate = {
       tag: 'div',
@@ -73,7 +73,7 @@ export class ControlToggle {
     const wrapDiv: HTMLElement = elementsCreate(htmlWrap);
     $(appSettings.controlSelector).wrap(wrapDiv);
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
   }
   private toggle(): void {

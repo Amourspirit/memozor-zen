@@ -56,12 +56,12 @@ export class ElementLoad extends BaseElementLoad {
     const levelDebug = DebugLevel.debug;
 
     if (appDebugLevel >= levelDebug) {
-      Log.debug(`${methodName}: Entered.`);
+      Log.Debug(`${methodName}: Entered.`);
     }
     // #endregion debug
     if (eventArgs.count > 1) {
       // #region [debug]
-      Log.debug(`${methodName}: eventArgs count has a value of: ${eventArgs.count} when a maxumim of 1 was expected`);
+      Log.Debug(`${methodName}: eventArgs count has a value of: ${eventArgs.count} when a maxumim of 1 was expected`);
       // #endregion debug
       eventArgs.cancel = true;
       return;
@@ -77,7 +77,7 @@ export class ElementLoad extends BaseElementLoad {
     this.elementLoaded.dispatch(this, eventArgs);
     this.dispose();
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
   }
   /**
@@ -95,10 +95,10 @@ export class ElementLoad extends BaseElementLoad {
     const levelDebug = DebugLevel.debug;
 
     if (appDebugLevel >= levelDebug) {
-      Log.debug(`${methodName}: Entered.`);
+      Log.Debug(`${methodName}: Entered.`);
     }
-    Log.debug(`${methodName} try no ${this.count}`);
-    Log.debug(`${methodName}: Leaving.`);
+    Log.Debug(`${methodName} try no ${this.count}`);
+    Log.Debug(`${methodName}: Leaving.`);
     // #endregion debug
     return;
   }

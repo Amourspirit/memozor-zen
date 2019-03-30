@@ -38,8 +38,8 @@ export class ResourceTest extends BaseElementLoad {
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
 
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered.`); }
-    Log.debug(`${methodName} try no ${this.count}`);
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered.`); }
+    Log.Debug(`${methodName} try no ${this.count}`);
     // #endregion debug
     if (this.lTestFuncton.length > 0) {
       if (this.fnArrayExist(this.lTestFuncton) === true) {
@@ -47,20 +47,20 @@ export class ResourceTest extends BaseElementLoad {
         this.dispose();
       } else {
         // #region [debug]
-        if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Try no ${this.count}, Unable to find test function: ${this.lTestFuncton}`); }
+        if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Try no ${this.count}, Unable to find test function: ${this.lTestFuncton}`); }
         // #endregion debug
         this.elementLoaded.dispatch(this, eventArgs);
         this.dispose();
       }
     } else {
       // #region [debug]
-      if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: There is no function to test for. Dispatching OnScriptAdded`); }
+      if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: There is no function to test for. Dispatching OnScriptAdded`); }
       // #endregion debug
       this.elementLoaded.dispatch(this, eventArgs);
       this.dispose();
     }
     // #region [debug]
-    if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving: count: ${this.count}`); }
+    if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving: count: ${this.count}`); }
     // #endregion debug
   }
   /**
@@ -78,10 +78,10 @@ export class ResourceTest extends BaseElementLoad {
     const levelDebug = DebugLevel.debug;
 
     if (appDebugLevel >= levelDebug) {
-      Log.debug(`${methodName}: Entered.`);
+      Log.Debug(`${methodName}: Entered.`);
     }
-    Log.debug(`${methodName} try no ${this.count}`);
-    Log.debug(`${methodName}: Leaving.`);
+    Log.Debug(`${methodName} try no ${this.count}`);
+    Log.Debug(`${methodName}: Leaving.`);
     // #endregion debug
     return;
   }

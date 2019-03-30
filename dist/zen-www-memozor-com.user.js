@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Zen for www.memozor.com games
 // @namespace       https://github.com/Amourspirit/memozor-zen
-// @version         1.1.5
+// @version         1.1.6
 // @description     Userscript that allows clean fullscreen game play at memozor.com
 // @author          Paul Moss
 // @run-at          document-end
@@ -56,7 +56,7 @@
     var Log =  (function () {
         function Log() {
         }
-        Log.message = function (msg, optionalParams) {
+        Log.Info = function (msg, optionalParams) {
             if (appSettings.debugLevel > DebugLevel.info) {
                 return;
             }
@@ -66,9 +66,9 @@
                     params[i] = optionalParams[i];
                 }
             }
-            console.log.apply(console, [msg].concat(params));
+            console.info.apply(console, [msg].concat(params));
         };
-        Log.warn = function (msg, optionalParams) {
+        Log.Warn = function (msg, optionalParams) {
             if (appSettings.debugLevel > DebugLevel.warn) {
                 return;
             }
@@ -80,7 +80,7 @@
             }
             console.warn.apply(console, [msg].concat(params));
         };
-        Log.error = function (msg, optionalParams) {
+        Log.Error = function (msg, optionalParams) {
             if (appSettings.debugLevel > DebugLevel.error) {
                 return;
             }
@@ -92,7 +92,7 @@
             }
             console.error.apply(console, [msg].concat(params));
         };
-        Log.debug = function (msg, optionalParams) {
+        Log.Debug = function (msg, optionalParams) {
             if (appSettings.debugLevel > DebugLevel.debug) {
                 return;
             }
@@ -102,9 +102,9 @@
                     params[i] = optionalParams[i];
                 }
             }
-            console.log.apply(console, [appSettings.shortName + ": Debug: " + msg].concat(params));
+            console.debug.apply(console, [appSettings.shortName + ": Debug: " + msg].concat(params));
         };
-        Log.debugWarn = function (msg, optionalParams) {
+        Log.DebugWarn = function (msg, optionalParams) {
             if (appSettings.debugLevel > DebugLevel.debug) {
                 return;
             }
@@ -751,11 +751,11 @@
         }
         ElementLoader.prototype.addElement = function (key, e) {
             if (key.length === 0) {
-                Log.error(appSettings.shortName + ": addElement: key argument can not be an empty string");
+                Log.Error(appSettings.shortName + ": addElement: key argument can not be an empty string");
                 return;
             }
             if (this.lEvents.hasOwnProperty(key)) {
-                Log.error(appSettings.shortName + ": addElement: key " + key + " is already in the list of elemets and can not be added again");
+                Log.Error(appSettings.shortName + ": addElement: key " + key + " is already in the list of elemets and can not be added again");
                 return;
             }
             this.lEvents[key] = e;
@@ -763,7 +763,7 @@
         };
         ElementLoader.prototype.hasElement = function (key) {
             if (key.length === 0) {
-                Log.debugWarn(appSettings.shortName + ": addElement: key is empty");
+                Log.DebugWarn(appSettings.shortName + ": addElement: key is empty");
                 return false;
             }
             var reslut = this.lEvents.hasOwnProperty(key);
@@ -848,7 +848,7 @@
         };
         ElementLoader.prototype.elementLoaded = function (args) {
             if (this.lEvents.hasOwnProperty(args.key) === false) {
-                Log.error(appSettings.shortName + ": elementLoaded: key " + args.key + " was not found to delete. This may be a serious error");
+                Log.Error(appSettings.shortName + ": elementLoaded: key " + args.key + " was not found to delete. This may be a serious error");
                 return;
             }
             else {
@@ -863,7 +863,7 @@
             args.loadFailed = true;
             this.lEventsFailed.push(args.key);
             if (this.lEvents.hasOwnProperty(args.key) === false) {
-                Log.error(appSettings.shortName + ": tickExpired: key " + args.key + " was not found to delete. This may be a serious error");
+                Log.Error(appSettings.shortName + ": tickExpired: key " + args.key + " was not found to delete. This may be a serious error");
                 return;
             }
             else {
@@ -1281,7 +1281,7 @@
         Fullscreen.prototype.injectButton = function () {
             var divBtnHolder = $(appSettings.buttonPlacementSelector);
             if (!divBtnHolder.length) {
-                Log.error(appSettings.shortName + " could not find where to place button: selector: " + appSettings.buttonPlacementSelector);
+                Log.Error(appSettings.shortName + " could not find where to place button: selector: " + appSettings.buttonPlacementSelector);
                 return;
             }
             var btnHtml = this.getButton();
@@ -1317,10 +1317,10 @@
             intTick.onTick().subscribe(function () {
                 var divBtn = $("#" + appSettings.buttonId);
                 if (!divBtn.length) {
-                    Log.message("try no: " + intTick.count + " looking for button: " + appSettings.buttonId);
+                    Log.Info("try no: " + intTick.count + " looking for button: " + appSettings.buttonId);
                     return;
                 }
-                Log.message("Found button " + appSettings.buttonId + " on try " + intTick.count);
+                Log.Info("Found button " + appSettings.buttonId + " on try " + intTick.count);
                 intTick.dispose();
                 divBtn.on('click', function () {
                     var jqGameBoard = $(appSettings.gameBoardSelector);
@@ -1346,7 +1346,7 @@
                 });
             });
             intTick.onExpired().subscribe(function () {
-                Log.warn("Unable to find button " + appSettings.buttonId);
+                Log.Warn("Unable to find button " + appSettings.buttonId);
             });
             intTick.start();
         };
@@ -1417,7 +1417,7 @@
                 this.addOnClick();
             }
             else {
-                Log.message("Selector " + appSettings.controlSelector + " is not found on this page");
+                Log.Info("Selector " + appSettings.controlSelector + " is not found on this page");
             }
         };
         ControlToggle.prototype.addControlClass = function () {
@@ -1483,15 +1483,15 @@
         return window.top === window.self;
     };
     var main = function () {
-        Log.message(appSettings.shortName + ": Start main...");
+        Log.Info(appSettings.shortName + ": Start main...");
         var ctlTog = new ControlToggle();
         ctlTog.init();
         var fs = new Fullscreen();
         fs.init();
-        Log.message(appSettings.shortName + ": End main...");
+        Log.Info(appSettings.shortName + ": End main...");
     };
     if (validateIfTop()) {
-        Log.message(appSettings.shortName + ': Entry Script: Start loading...');
+        Log.Info(appSettings.shortName + ': Entry Script: Start loading...');
         var iv_1 = new IntervalManual(500, 30);
         iv_1.onTick().subscribe(function (s, a) {
             if ($(appSettings.gameBoardSelector).length === 1) {
@@ -1499,27 +1499,27 @@
                 var loader_1 = new MainElementLoader();
                 loader_1.onAllElementsLoaded().subscribe(function (sender, args) {
                     loader_1.dispose();
-                    Log.message(appSettings.shortName + ": Entry Script: All Scripts loaded. Total count: " + args.totalNumberOfScripts);
+                    Log.Info(appSettings.shortName + ": Entry Script: All Scripts loaded. Total count: " + args.totalNumberOfScripts);
                     main();
                 });
                 loader_1.onElementsLoadFail().subscribe(function (sender, args) {
                     loader_1.dispose();
-                    Log.error(appSettings.shortName + ": Entry Script: The neceassary elements were note loaded. Failed:", args.remainingEvents);
+                    Log.Error(appSettings.shortName + ": Entry Script: The neceassary elements were note loaded. Failed:", args.remainingEvents);
                 });
                 loader_1.onElementLoaded().subscribe(function (sender, args) {
-                    Log.message(appSettings.shortName + ": Entry Script: Element with Key value of '" + args.key + "' has loaded");
+                    Log.Info(appSettings.shortName + ": Entry Script: Element with Key value of '" + args.key + "' has loaded");
                 });
                 loader_1.onTickExpired().subscribe(function (sender, args) {
-                    Log.warn(appSettings.shortName + ": Entry Script: Element with Key value of '" + args.key + "' has failed to load");
+                    Log.Warn(appSettings.shortName + ": Entry Script: Element with Key value of '" + args.key + "' has failed to load");
                 });
                 loader_1.start();
             }
         });
         iv_1.onExpired().subscribe(function (sender, args) {
-            Log.message(appSettings.shortName + ": No game board found on this page");
+            Log.Info(appSettings.shortName + ": No game board found on this page");
         });
         iv_1.start();
-        Log.message(appSettings.shortName + ': Entry Script: End loading...');
+        Log.Info(appSettings.shortName + ': Entry Script: End loading...');
     }
 
 }($));

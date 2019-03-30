@@ -253,11 +253,11 @@ module.exports = function (grunt) {
           "scratch/build_ops/<%= pkg._name %>.user.js": "scratch/build_ops/<%= pkg._name %>.user.js"
         }
       },
-      debug_nc: {
+      no_debug: {
         files: [{
-          cwd: 'scratch/compiled/',
+          cwd: 'scratch/build_ops/',
           src: '<%= pkg._name %>.user.js',
-          dest: 'scratch/NoDebugComment/',
+          dest: 'scratch/compiled/',
           expand: true
         }]
       },

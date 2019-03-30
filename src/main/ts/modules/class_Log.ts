@@ -2,7 +2,7 @@ import { appSettings } from './appSettings';
 import { DebugLevel } from './enums';
 export class Log {
 
-  public static message(msg: string, optionalParams?: any[]): void {
+  public static Info(msg: string, optionalParams?: any[]): void {
     if (appSettings.debugLevel > DebugLevel.info) {
       return;
     }
@@ -12,10 +12,10 @@ export class Log {
         params[i] = optionalParams[i];
       }
     }
-    console.log(msg, ...params);
+    console.info(msg, ...params);
   }
 
-  public static warn(msg: string, optionalParams?: any[]): void {
+  public static Warn(msg: string, optionalParams?: any[]): void {
     if (appSettings.debugLevel > DebugLevel.warn) {
       return;
     }
@@ -28,7 +28,7 @@ export class Log {
     console.warn(msg, ...params);
   }
 
-  public static error(msg: any, optionalParams?: any[]): void {
+  public static Error(msg: any, optionalParams?: any[]): void {
     if (appSettings.debugLevel > DebugLevel.error) {
       return;
     }
@@ -40,7 +40,7 @@ export class Log {
     }
     console.error(msg, ...params);
   }
-  public static debug(msg: string, optionalParams?: any[]): void {
+  public static Debug(msg: string, optionalParams?: any[]): void {
     if (appSettings.debugLevel > DebugLevel.debug) {
       return;
     }
@@ -50,10 +50,10 @@ export class Log {
         params[i] = optionalParams[i];
       }
     }
-    console.log(`${appSettings.shortName}: Debug: ${msg}`, ...params);
+    console.debug(`${appSettings.shortName}: Debug: ${msg}`, ...params);
   }
 
-  public static debugWarn(msg: string, optionalParams?: any[]): void {
+  public static DebugWarn(msg: string, optionalParams?: any[]): void {
     if (appSettings.debugLevel > DebugLevel.debug) {
       return;
     }
