@@ -10,7 +10,7 @@ import { DebugLevel } from './enums';
    * @returns Returns true if the scring value matches a global function; otherwise false.
    */
 export const utilFnAsStringExist = (fnstring: string): boolean => {
-  // @debug start
+  // #region [debug]
   const methodName: string = 'fnAsStringExist';
   // Higher price to check using enumes each time so capture the values here
   const appDebugLevel = appSettings.debugLevel;
@@ -20,26 +20,26 @@ export const utilFnAsStringExist = (fnstring: string): boolean => {
     Log.debug(`${methodName}: Entered.`);
   }
   Log.debug(`${methodName} Looking for function: ${fnstring}`);
-  // @debug end
+  // #endregion debug
   // find object
   // see: https://stackoverflow.com/questions/42193262/element-implicitly-has-an-any-type-because-type-window-has-no-index-signatur
   const fn = (window as any)[fnstring];
   // is object a function?
   if (typeof fn === 'function') {
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) {
       Log.debug(`${methodName}: found function: ${fnstring}.`);
       Log.debug(`${methodName}: Leaving.`);
     }
-    // @debug end
+    // #endregion debug
     return true;
   } else {
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) {
       Log.debug(`${methodName}: unable to find function: ${fnstring}.`);
       Log.debug(`${methodName}: Leaving.`);
     }
-    // @debug end
+    // #endregion debug
     return false;
   }
 };

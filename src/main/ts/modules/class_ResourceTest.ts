@@ -32,7 +32,7 @@ export class ResourceTest extends BaseElementLoad {
   * the event onTick will not dispatch
   */
   protected onTickTock(eventArgs: IIntervalEventArgs): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ResourceTest.onTickTock';
     // Higher price to check using enumes each time so capture the values here
     const appDebugLevel = appSettings.debugLevel;
@@ -40,28 +40,28 @@ export class ResourceTest extends BaseElementLoad {
 
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered.`); }
     Log.debug(`${methodName} try no ${this.count}`);
-    // @debug end
+    // #endregion debug
     if (this.lTestFuncton.length > 0) {
       if (this.fnArrayExist(this.lTestFuncton) === true) {
         this.elementLoaded.dispatch(this, eventArgs);
         this.dispose();
       } else {
-        // @debug start
+        // #region [debug]
         if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Try no ${this.count}, Unable to find test function: ${this.lTestFuncton}`); }
-        // @debug end
+        // #endregion debug
         this.elementLoaded.dispatch(this, eventArgs);
         this.dispose();
       }
     } else {
-      // @debug start
+      // #region [debug]
       if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: There is no function to test for. Dispatching OnScriptAdded`); }
-      // @debug end
+      // #endregion debug
       this.elementLoaded.dispatch(this, eventArgs);
       this.dispose();
     }
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving: count: ${this.count}`); }
-    // @debug end
+    // #endregion debug
   }
   /**
   * Overrides super method to capture onExpired events
@@ -71,7 +71,7 @@ export class ResourceTest extends BaseElementLoad {
   * the event onExpired will not dispatch
   */
   protected onTickExpired(eventArgs: IIntervalEventArgs): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ResourceTest.onExpired';
     // Higher price to check using enumes each time so capture the values here
     const appDebugLevel = appSettings.debugLevel;
@@ -82,7 +82,7 @@ export class ResourceTest extends BaseElementLoad {
     }
     Log.debug(`${methodName} try no ${this.count}`);
     Log.debug(`${methodName}: Leaving.`);
-    // @debug end
+    // #endregion debug
     return;
   }
 }

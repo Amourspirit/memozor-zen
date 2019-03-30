@@ -1,4 +1,3 @@
-
 module.exports = function (grunt) {
   var packageData = grunt.file.readJSON('package.json');
   var BUILD_VERSION = packageData.version + '-' + (process.env.BUILD_NUMBER ? process.env.BUILD_NUMBER : '0');
@@ -83,7 +82,9 @@ module.exports = function (grunt) {
               .replace(/\r\n|\n/g, "\\n");
           }
         }
-        fileContent = fileContent.replace(match[0], function () { return file; });
+        fileContent = fileContent.replace(match[0], function () {
+          return file;
+        });
       }
       grunt.log.writeln("");
       return fileContent;
@@ -143,18 +144,28 @@ module.exports = function (grunt) {
 
     replace: { // https://www.npmjs.com/package/grunt-text-replace
       debug_comments: {
-        src: ['scratch/rolled/<%= pkg._name %>.user.js'],
-        dest: 'scratch/nodebug/<%= pkg._name %>.user.js',  // destination directory or file
+        src: ['scratch/build_ops/<%= pkg._name %>.user.js'],
+        dest: 'scratch/nodebug/<%= pkg._name %>.user.js', // destination directory or file
         replacements: [{
-          // .net reges \s*//\s@debug\sstart[\s\S]*?//\s@debug\send
+          // .net reges \s*//\s#region\s\[debug\][\s\S]*?//\s#endregion\sdebug\s*$
           // see also: http://regexstorm.net/tester
-          from: /[\s]*\/\/\s@debug\sstart[.\s\S]*?\/\/\s@debug\send[\s]*$/gm, // see https://www.regexpal.com/?fam=108408
+          from: /[\s]*\/\/\s#region\s\[debug\][.\s\S]*?\/\/\s#endregion\sdebug[\s]*$/gm, // see https://www.regexpal.com/?fam=108587
+          to: ''
+        }]
+      },
+      build_remove: {
+        src: ['scratch/rolled/<%= pkg._name %>.user.js'],
+        dest: 'scratch/build_ops/<%= pkg._name %>.user.js', // destination directory or file
+        replacements: [{
+          // .net reges \s*//\s#region\s\[BUILD_REMOVE\][\s\S]*?//\s#endregion\sBUILD_REMOVE\s*$
+          // see also: http://regexstorm.net/tester
+          from: /[\s]*\/\/\s#region\s\[BUILD_REMOVE\][.\s\S]*?\/\/\s#endregion\sBUILD_REMOVE[\s]*$/gm, // see https://www.regexpal.com/?fam=108661
           to: ''
         }]
       },
       inner_css: {
         src: ['scratch/css/style.min.css'],
-        dest: 'scratch/text/buttonstyle.txt',  // destination directory or file
+        dest: 'scratch/text/buttonstyle.txt', // destination directory or file
         replacements: [{
           from: /(.*\.gm-tb-style{(.*?)}.*)/g,
           to: '$2;'
@@ -169,77 +180,84 @@ module.exports = function (grunt) {
         }]
       },
       header_build: {
-        src: ['src/main/text/header.txt'],   // source files array (supports minimatch)
-        dest: 'scratch/text/header.txt',  // destination directory or file
+        src: ['src/main/text/header.txt'], // source files array (supports minimatch)
+        dest: 'scratch/text/header.txt', // destination directory or file
         replacements: [{
-          from: '@BUILD_NUMBER@',                   // string replacement
-          to: packageData.version
-        },
-        {
-          from: '@FULL_NAME@',
-          to: packageData._fullName
-        },
-        {
-          from: '@SCRIPT_NAME@',
-          to: packageData._name
-        },
-        {
-          from: '@AUTHOR@',
-          to: packageData.author
-        },
-        {
-          from: '@DESCRIPTION@',
-          to: packageData.description
-        },
-        {
-          from: '@LICENSE@',
-          to: packageData.license
-        },
-        {
-          from: '@REPOSITORY_NAME@',
-          to: packageData._repositoryName
-        }
+            from: '@BUILD_NUMBER@', // string replacement
+            to: packageData.version
+          },
+          {
+            from: '@FULL_NAME@',
+            to: packageData._fullName
+          },
+          {
+            from: '@SCRIPT_NAME@',
+            to: packageData._name
+          },
+          {
+            from: '@AUTHOR@',
+            to: packageData.author
+          },
+          {
+            from: '@DESCRIPTION@',
+            to: packageData.description
+          },
+          {
+            from: '@LICENSE@',
+            to: packageData.license
+          },
+          {
+            from: '@REPOSITORY_NAME@',
+            to: packageData._repositoryName
+          }
         ]
       },
       readme_build: {
-        src: ['src/main/text/Readme.md'],   // source files array (supports minimatch)
-        dest: './Readme.md',  // destination directory or file
+        src: ['src/main/text/Readme.md'], // source files array (supports minimatch)
+        dest: './Readme.md', // destination directory or file
         replacements: [{
-          from: '@BUILD_NUMBER@',                   // string replacement
-          to: packageData.version
-        },
-        {
-          from: '@SCRIPT_NAME@',
-          to: packageData._name
-        },
-        {
-          from: '@AUTHOR@',
-          to: packageData.author
-        },
-        {
-          from: '@REPOSITORY_NAME@',
-          to: packageData._repositoryName
-        }
+            from: '@BUILD_NUMBER@', // string replacement
+            to: packageData.version
+          },
+          {
+            from: '@SCRIPT_NAME@',
+            to: packageData._name
+          },
+          {
+            from: '@AUTHOR@',
+            to: packageData.author
+          },
+          {
+            from: '@REPOSITORY_NAME@',
+            to: packageData._repositoryName
+          }
         ]
       }
     },
-
-    copy: {  // https://github.com/gruntjs/grunt-contrib-copy
-      // build will replace build includesin the file such as //BUILD_INCLUDE('./scratch/text/buttonstyle.txt')
-      build: { // https://paultavares.wordpress.com/2014/12/01/grunt-how-to-embed-the-content-of-files-in-javascript-files/
+    /*
+     * copy
+     * https://github.com/gruntjs/grunt-contrib-copy
+     */
+    copy: {
+      /*
+       * Build
+       * build will replace build includes in the file such as // BUILD_INCLUDE('./scratch/text/buttonstyle.txt')
+       * https://paultavares.wordpress.com/2014/12/01/grunt-how-to-embed-the-content-of-files-in-javascript-files/
+       */
+      build: {
         options: {
           expand: true,
           process: includeFile
         },
         files: {
-          "scratch/compiled/<%= pkg._name %>.user.js": "scratch/compiled/<%= pkg._name %>.user.js"
+          "scratch/build_ops/<%= pkg._name %>.user.js": "scratch/build_ops/<%= pkg._name %>.user.js"
         }
       },
-      no_debug: {
+      debug_nc: {
         files: [{
-          cwd: 'scratch/rolled/',
+          cwd: 'scratch/compiled/',
           src: '<%= pkg._name %>.user.js',
-          dest: 'scratch/compiled/',
+          dest: 'scratch/NoDebugComment/',
           expand: true
         }]
       },
@@ -261,12 +279,14 @@ module.exports = function (grunt) {
       }
     },
 
-    if: {  // https://github.com/bonesoul/grunt-if-next
+    if: { // https://github.com/bonesoul/grunt-if-next
       debug: {
         // Target-specific file lists and/or options go here.
         options: {
           // execute test function(s)
-          test: function () { return packageData._debuglevel > 0; },
+          test: function () {
+            return packageData._debuglevel > 0;
+          }
         },
         //array of tasks to execute if all tests pass
         ifTrue: [
@@ -277,12 +297,11 @@ module.exports = function (grunt) {
         ifFalse: ['copy:no_debug']
       },
       debug_remove_comments: {
-        // Target-specific file lists and/or options go here.
         options: {
-          // execute test function(s)
-          test: function () { return ((packageData._debuglevel === 0) && (packageData._debugRemoveComment === true)); },
+          test: function () {
+            return ((packageData._debuglevel === 0) && (packageData._debugRemoveComment === true));
+          }
         },
-        //array of tasks to execute if all tests pass
         ifTrue: [
           // copy from compiled, remove comments and copy back to compiled
           'copy:debug_nc',
@@ -302,14 +321,14 @@ module.exports = function (grunt) {
       }
     },
     // minify html files
-    htmlmin: {  // https://github.com/gruntjs/grunt-contrib-htmlmin
-      dist: {                                      // Target
-        options: {                                 // Target options
+    htmlmin: { // https://github.com/gruntjs/grunt-contrib-htmlmin
+      dist: { // Target
+        options: { // Target options
           removeComments: true,
           collapseWhitespace: true
         },
-        files: {                                   // Dictionary of files
-          'scratch/html/gm-edit-btn.html': 'src/main/html/gm-edit-btn.html'     // 'destination': 'source'
+        files: { // Dictionary of files
+          'scratch/html/gm-edit-btn.html': 'src/main/html/gm-edit-btn.html' // 'destination': 'source'
         }
       }
     },
@@ -323,6 +342,33 @@ module.exports = function (grunt) {
           dest: 'scratch/css',
           ext: '.min.css'
         }]
+      }
+    },
+    writeFile: {
+      debug: {
+        content: function () {
+          var dl = 'debugLevel: DebugLevel.';
+          switch (packageData._debuglevel) {
+            case 0:
+              dl += 'debug';
+              break;
+            case 1:
+              dl += 'error';
+              break;
+            case 2:
+              dl += 'warn';
+              break;
+            case 3:
+              dl += 'info';
+              break;
+            default:
+              dl += 'none';
+              break;
+          }
+          dl += ','
+          return dl;
+        },
+        dest: 'scratch/text/debug_level.txt'
       }
     }
   });
@@ -341,20 +387,155 @@ module.exports = function (grunt) {
     grunt.file.write('dist/version.txt', BUILD_VERSION);
   });
 
+  /**
+   * Writes contents to a file
+   * @see https://stackoverflow.com/questions/15647276/grunt-js-output-and-write-contents-of-folder-to-file
+   */
+  grunt.registerMultiTask("writeFile", "Write content to a file", function () {
+    var out = this.data.dest;
+    var content = this.data.content;
+    var result = '';
+    if (typeof content === 'function') {
+      result = content();
+    } else {
+      result = content;
+    }
+    grunt.file.write(out, result);
+  });
+
   grunt.registerTask('default', [
-    'clean:dirs',                // clean the folder out from any previous build
+    /*
+     * Task clean: dirs
+     * clean the folder out from any previous build
+     */
+    'clean:dirs',
+    /*
+     * Task clean: readme
+     * remove root Readme.md from project root
+     */
     'clean:readme',
-    'tslint',               // check the ts files for any lint issues
-    'shell:tsc',            // run tsc
-    'shell:rollup',         // run rollup to combine all the files into one js file.
-    'if:debug',             // run if debug command to remove debug if _debug value of package.json is greater then 0 otherwise copy file to compiled and continue
+    /*
+     * Task tslint
+     * check the ts files for any lint issues
+     */
+    'tslint',
+    /*
+     * Task shell: tsc
+     * run tsc, outputs to /lib
+     */
+    'shell:tsc',
+    /*
+     * Task shell: rollup
+     * run rollup to combine all the files into one js file.
+     */
+    'shell:rollup',
+    /*
+     * Task replace: build_remove
+     * Remove all #region [BUILD_REMOVE] blocks
+     * Outputs to /scratch/build_ops/< pkg._name >.user.js
+     */
+    'replace:build_remove',
+    /*
+     * Task cssmin
+     * minify css files to be later injected into the js file.
+     * outputs to /scratch/css/<filename>.min.css
+     */
+    'cssmin',
+    /*
+     * Task writeFile: debug
+     * Reads pacakge.json _debuglevel and bases upon the value
+     * writes a line of code into file /scratch/text/debug_level.txt
+     */
+    'writeFile:debug',
+    /*
+     * Task copy: build
+     * run special function includeFile that is in this script to replace
+     * BUILD_INCLUDE values in /scratch/build_ops/< pkg._name >.user.js
+     * These replacements are done in place. No new file is created.
+     */
+    'copy:build',
+    /*
+     * Task 'if:debug
+     * Reads package.json _debug value and if it is greater than 0
+     * Runs task replace:debug_comments see below
+     * Runs task remove_comments:js see below
+     */
+    /*
+     * Task 'if:debug
+     * Reads package.json _debug value and if it is greater than 0
+     * Runs task replace:debug_comments see below
+     * Runs task remove_comments:js see below
+     */
+    'if:debug',
+    /*
+     * Task if: debug_remove_comments
+     * Reads package.json _debug value and and _debugRemoveComment values
+     * if _debug is equal to zero and _debugRemoveComment is true then
+     * tasks copy:debug_nc, clean:compiled, remove_comments:debug_nc
+     * and copy:debug_nc_clean are run: see below
+     */
     'if:debug_remove_comments',
-    'replace:header_build',   // replace the build number in the header text with current version from package.json
-    'cssmin',               // minify css files to be later injected into the js file.
-    // 'htmlmin',              // minify html files to be later injected into the js file.
-    // 'replace:inner_css',    // extract the .button css from minified css and write it into a text file
-    'copy:build',           // run special function includeFile that is in this script to replace BUILD_INCLUDE vars in js.
-    'concat',               // combine the header file with the javascript file.
+    /*
+     * Task replace: header_build
+     * replace the @PLACEHOLDERS@ in the header text with values from package.json
+     * the source file is /src/main/text/header.txt
+     * the dest file is /scratch/text/header.txt
+     */
+    'replace:header_build',
+    /*
+     * Task concat
+     * combine the /scratch/text/header.txt file with 
+     * /scratch/compiled/< pkg._name >.user.js
+     * outputs to /dist/< pkg._name >.user.js
+     */
+    'concat',
+    /*
+     * Task replace: readme_build
+     * replace the @PLACEHOLDERS@ in the readme.md with values from package.json
+     * the source file is /src/main/text/Readme.md
+     * the dest file is /Readme.md
+     */
     'replace:readme_build'
   ]);
 };
+/*
+ * Task replace: debug_comments
+ * Finds all #regon [debug] blocks and removes them
+ * source file: /scratch/build_ops/< pkg._name >.user.js
+ * dest file: /scratch/nodebug/< pkg._name >.user.js
+ */
+
+/*
+ * Task remove_comments: js
+ * Removes debug comments from javascript file.
+ * source file: /scratch/nodebug/< pkg._name >.user.js
+ * dest file: /scratch/compiled/< pkg._name >.user.js
+ */
+
+/*
+ * Task copy: debug_nc
+ * Debug No Comment
+ * simple file copy frim source to dest
+ * source file: /scratch/compiled/< pkg._name >.user.js
+ * dest file: /scratch/NoDebugComment/< pkg._name >.user.js
+ */
+
+/*
+ * Task clean: compiled
+ * Clears the directory /scratch/compiled/
+ */
+
+/*
+ * Task remove_comments: debug_nc
+ * Removes debug comments from javascript file.
+ * source file: /scratch/NoDebugComment/< pkg._name >.user.js
+ * dest file: /scratch/debug_nc/< pkg._name >.user.js
+ */
+
+/*
+ * Task copy: debug_nc_clean
+ * Debug No Comment Clean
+ * simple file copy frim source to dest
+ * source file: /scratch/debug_nc/< pkg._name >.user.js
+ * dest file: /scratch/compiled/< pkg._name >.user.js
+ */

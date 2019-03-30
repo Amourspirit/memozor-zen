@@ -21,13 +21,13 @@ export class ElementLoader implements IDisposable {
     this.lEvents = {};
   }
   public addElement(key: string, e: BaseElementLoad): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ElementLoader.addElement';
     // Higher price to check using enumes each time so capture the values here
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered.`); }
-    // @debug end
+    // #endregion debug
     if (key.length === 0) {
       Log.error(`${appSettings.shortName}: addElement: key argument can not be an empty string`);
       return;
@@ -38,26 +38,26 @@ export class ElementLoader implements IDisposable {
     }
     this.lEvents[key] = e;
     this.lTotalScripts++;
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
   public hasElement(key: string): boolean {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ElementLoader.methodName';
     // Higher price to check using enumes each time so capture the values here
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered.`); }
-    // @debug end
+    // #endregion debug
     if (key.length === 0) {
       Log.debugWarn(`${appSettings.shortName}: addElement: key is empty`);
       return false;
     }
     const reslut: boolean = this.lEvents.hasOwnProperty(key);
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
     return reslut;
   }
   public onAllElementsLoaded(): IEvent<ElementLoader, ElementsLoadedArgs> {
@@ -77,18 +77,18 @@ export class ElementLoader implements IDisposable {
   }
 
   public start(): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ElementLoader.start';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-    // @debug end
+    // #endregion debug
     const onBeforeStartEventArgs = new EventArgs();
     this.onBeforeStart(onBeforeStartEventArgs);
     if (onBeforeStartEventArgs.cancel === true) {
-      // @debug start
+      // #region [debug]
       Log.debug(`${methodName}: Exiting due to event was canceled `);
-      // @debug end
+      // #endregion debug
       return;
     }
     for (const key in this.lEvents) {
@@ -100,9 +100,9 @@ export class ElementLoader implements IDisposable {
           if (eArgs.cancel === true) {
             return;
           }
-          // @debug start
+          // #region [debug]
           Log.debug(`${methodName}: Dispatching onTick for key: ${eArgs.key}`);
-          // @debug end
+          // #endregion debug
           this.lOnTick.dispatch(this, eArgs);
         });
         element.onExpired().subscribe((sender, args) => {
@@ -113,9 +113,9 @@ export class ElementLoader implements IDisposable {
           if (eArgs.cancel === true) {
             return;
           }
-          // @debug start
+          // #region [debug]
           Log.debug(`${methodName}: Dispatching onTickExpired for key: ${eArgs.key}`);
-          // @debug end
+          // #endregion debug
           this.lOnTickExpired.dispatch(this, eArgs);
         });
         element.onElementLoaded().subscribe((sender, args) => {
@@ -126,17 +126,17 @@ export class ElementLoader implements IDisposable {
           if (eArgs.cancel === true) {
             return;
           }
-          // @debug start
+          // #region [debug]
           Log.debug(`${methodName}: Dispatching onElementLoaded for key: ${eArgs.key}`);
-          // @debug end
+          // #endregion debug
           this.lOnElementLoaded.dispatch(this, eArgs);
         });
         element.start();
       }
     }
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
     this.onAfterStart(new EventArgs());
   }
   /**
@@ -160,7 +160,7 @@ export class ElementLoader implements IDisposable {
     return;
   }
   private elementLoaded(args: ElementLoaderEventArgs): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ElementLoader.elementLoaded';
     // Higher price to check using enumes each time so capture the values here
     const appDebugLevel = appSettings.debugLevel;
@@ -169,7 +169,7 @@ export class ElementLoader implements IDisposable {
       Log.debug(`${methodName}: Entered.`);
       Log.debug(`${methodName}: args key: ${args.key}`);
     }
-    // @debug end
+    // #endregion debug
     if (this.lEvents.hasOwnProperty(args.key) === false) {
       Log.error(`${appSettings.shortName}: elementLoaded: key ${args.key} was not found to delete. This may be a serious error`);
       return;
@@ -178,12 +178,12 @@ export class ElementLoader implements IDisposable {
       delete this.lEvents[args.key];
     }
     this.goForFinish();
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
   private tick(args: ElementLoaderEventArgs): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ElementLoader.tick';
     // Higher price to check using enumes each time so capture the values here
     const appDebugLevel = appSettings.debugLevel;
@@ -192,14 +192,14 @@ export class ElementLoader implements IDisposable {
       Log.debug(`${methodName}: Entered.`);
       Log.debug(`${methodName}: tick for key ${args.key}`);
     }
-    // @debug end
-    // @debug start
+    // #endregion debug
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
     return;
   }
   private tickExpired(args: ElementLoaderEventArgs): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ElementLoader.tickExpired';
     // Higher price to check using enumes each time so capture the values here
     const appDebugLevel = appSettings.debugLevel;
@@ -208,7 +208,7 @@ export class ElementLoader implements IDisposable {
       Log.debug(`${methodName}: Entered`);
       Log.debug(`${methodName}: for key: ${args.key}`);
     }
-    // @debug end
+    // #endregion debug
     // set the args loadFailed property
     args.loadFailed = true;
     // add faile event key to failed events array
@@ -222,57 +222,57 @@ export class ElementLoader implements IDisposable {
       delete this.lEvents[args.key];
     }
     this.goForFinish();
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
     return;
   }
   private allElementsLoaded(args: ElementsLoadedArgs): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ElementLoader.allScriptsLoaded';
     // Higher price to check using enumes each time so capture the values here
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered.`); }
-    // @debug end
+    // #endregion debug
     if (this.lEventsFailed.length > 0) {
-      // @debug start
+      // #region [debug]
       Log.debug(`${methodName}: Failed to load all elements. Dispatching onElementsLoadFail()`);
-      // @debug end
+      // #endregion debug
       args.cancel = true;
       const eArgs: ElementsLoadFailArgs = new ElementsLoadFailArgs(this.lTotalScripts, this.lEventsFailed);
       this.lOnElementLoadFail.dispatch(this, eArgs);
     }
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
     return;
   }
   private goForFinish() {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ElementLoader.goForFinish';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-    // @debug end
+    // #endregion debug
     const done: boolean = this.isElementsLoaded();
     if (done) {
-      // @debug start
+      // #region [debug]
       Log.debug(`${methodName}: All elemets are loaded dispatching onAllElementsLoaded`);
-      // @debug end
+      // #endregion debug
       const eArgs = new ElementsLoadedArgs(this.lTotalScripts);
       this.allElementsLoaded(eArgs);
       if (eArgs.cancel === false) {
         this.lOnAllElementLoaded.dispatch(this, eArgs);
       }
     } else {
-      // @debug start
+      // #region [debug]
       Log.debug(`${methodName}: Not elemets are loaded yet`);
-      // @debug end
+      // #endregion debug
     }
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
   /*
  * Function to check and see if there are any element left to be loaded

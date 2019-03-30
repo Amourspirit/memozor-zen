@@ -49,7 +49,7 @@ export class ElementLoad extends BaseElementLoad {
    * This method is expected only to be fired once on this class
    */
   protected onTickTock(eventArgs: IIntervalEventArgs): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ElementLoad.onTickTock';
     // Higher price to check using enumes each time so capture the values here
     const appDebugLevel = appSettings.debugLevel;
@@ -58,11 +58,11 @@ export class ElementLoad extends BaseElementLoad {
     if (appDebugLevel >= levelDebug) {
       Log.debug(`${methodName}: Entered.`);
     }
-    // @debug end
+    // #endregion debug
     if (eventArgs.count > 1) {
-      // @debug start
+      // #region [debug]
       Log.debug(`${methodName}: eventArgs count has a value of: ${eventArgs.count} when a maxumim of 1 was expected`);
-      // @debug end
+      // #endregion debug
       eventArgs.cancel = true;
       return;
     }
@@ -76,9 +76,9 @@ export class ElementLoad extends BaseElementLoad {
     // now that thte element is added to the document dispatch on script loaded.
     this.elementLoaded.dispatch(this, eventArgs);
     this.dispose();
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
   /**
   * Overrides super method to capture onExpired events
@@ -88,7 +88,7 @@ export class ElementLoad extends BaseElementLoad {
   * the event onExpired will not dispatch
   */
   protected onTickExpired(eventArgs: IIntervalEventArgs): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ElementLoad.onExpired';
     // Higher price to check using enumes each time so capture the values here
     const appDebugLevel = appSettings.debugLevel;
@@ -99,7 +99,7 @@ export class ElementLoad extends BaseElementLoad {
     }
     Log.debug(`${methodName} try no ${this.count}`);
     Log.debug(`${methodName}: Leaving.`);
-    // @debug end
+    // #endregion debug
     return;
   }
 }

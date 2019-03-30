@@ -8,38 +8,38 @@ import {
 } from './enums';
 
 export const elementAddToDoc = (e: HTMLElement, nodeLocation: ElementLocation): void => {
-  // @debug start
+  // #region [debug]
   const methodName: string = 'elementAddToDoc';
   const appDebugLevel = appSettings.debugLevel;
   const levelDebug = DebugLevel.debug;
   if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-  // @debug end
+  // #endregion debug
   const D: Document = document;
   let targ: Element;
   switch (nodeLocation) {
     case ElementLocation.body:
-      // @debug start
+      // #region [debug]
       if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Case body`); }
-      // @debug end
+      // #endregion debug
       targ = D.getElementsByTagName('body')[0] || D.body;
       break;
     case ElementLocation.head:
-      // @debug start
+      // #region [debug]
       if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Case head`); }
-      // @debug end
+      // #endregion debug
       targ = D.getElementsByTagName('head')[0] || D.head;
       break;
     default:
-      // @debug start
+      // #region [debug]
       if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Case default: body, documentelement`); }
-      // @debug end
+      // #endregion debug
       targ = D.getElementsByTagName('body')[0] || D.body || D.documentElement;
       break;
   }
   targ.appendChild(e);
-  // @debug start
+  // #region [debug]
   if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-  // @debug end
+  // #endregion debug
 };
 /**
  * Creates an Html element
@@ -49,7 +49,7 @@ export const elementAddToDoc = (e: HTMLElement, nodeLocation: ElementLocation): 
  * To created nested html elements see elementsCreate.
  */
 export const elementCreate = (args: IElementCreate): HTMLElement => {
-  // @debug start
+  // #region [debug]
   const methodName: string = 'elementCreate';
   // Higher price to check using enumes each time so capture the values here
   const appDebugLevel = appSettings.debugLevel;
@@ -58,7 +58,7 @@ export const elementCreate = (args: IElementCreate): HTMLElement => {
   if (appDebugLevel >= levelDebug) {
     Log.debug(`${methodName}: Entered.`);
   }
-  // @debug end
+  // #endregion debug
 
   const htmlNode: HTMLElement = utilCreateElement(args.elementTag); // D.createElement('script');
   if (args.elementAttributes) {
@@ -75,11 +75,11 @@ export const elementCreate = (args: IElementCreate): HTMLElement => {
   if (args.elementText && args.elementText.length > 0) {
     htmlNode.textContent = args.elementText;
   }
-  // @debug start
+  // #region [debug]
   if (appDebugLevel >= levelDebug) {
     Log.debug(`${methodName}: Leaving`);
   }
-  // @debug end
+  // #endregion debug
   return htmlNode;
 };
 /**
@@ -120,7 +120,7 @@ const args: IElementCreate = {
  ```
  */
 export const elementsCreate = (args: IElementCreate): HTMLElement => {
-  // @debug start
+  // #region [debug]
   const methodName: string = 'elementsCreate';
   // Higher price to check using enumes each time so capture the values here
   const appDebugLevel = appSettings.debugLevel;
@@ -129,16 +129,16 @@ export const elementsCreate = (args: IElementCreate): HTMLElement => {
   if (appDebugLevel >= levelDebug) {
     Log.debug(`${methodName}: Entered`);
   }
-  // @debug end
+  // #endregion debug
   const parentEl: HTMLElement = elementCreate(args);
   if (args.childElements) {
     addElementRecursive(parentEl, args.childElements);
   }
-  // @debug start
+  // #region [debug]
   if (appDebugLevel >= levelDebug) {
     Log.debug(`${methodName}: Leaving`);
   }
-  // @debug end
+  // #endregion debug
   return parentEl;
 };
 /**

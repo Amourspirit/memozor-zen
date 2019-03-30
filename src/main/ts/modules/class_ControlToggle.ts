@@ -10,12 +10,12 @@ export class ControlToggle {
   private lDivtoggleId: string = 'mem-div-tog';
   private lVisible: boolean = true;
   public init() {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ControlToggle.init';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-    // @debug end
+    // #endregion debug
     if (this.controlExist() === true) {
       this.wrapControl();
       this.addControlClass();
@@ -24,9 +24,9 @@ export class ControlToggle {
     } else {
       Log.message(`Selector ${appSettings.controlSelector} is not found on this page`);
     }
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
   private addControlClass(): void {
     $(appSettings.controlSelector).addClass('mem-fs-ctl');
@@ -57,12 +57,12 @@ export class ControlToggle {
     $(`#${this.lDivWrapId}`).prepend(arrow);
   }
   private wrapControl(): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'ControlToggle.wrapControl';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-    // @debug end
+    // #endregion debug
     const htmlWrap: IElementCreate = {
       elementTag: 'div',
       elementAttributes: {
@@ -72,9 +72,9 @@ export class ControlToggle {
     };
     const wrapDiv: HTMLElement = elementsCreate(htmlWrap);
     $(appSettings.controlSelector).wrap(wrapDiv);
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
   private toggle(): void {
     const el = $('i.mem-fs-tog');

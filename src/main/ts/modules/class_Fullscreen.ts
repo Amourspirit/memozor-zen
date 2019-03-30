@@ -17,22 +17,22 @@ export class Fullscreen {
     this.addBtnClick();
   }
   private toggleDisplay(): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'toggleDisplay';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-    // @debug end
+    // #endregion debug
     const jqGameBoard = $(appSettings.gameBoardSelector);
     if (jqGameBoard.length !== 1) {
-      // @debug start
+      // #region [debug]
       Log.debugWarn(`${methodName}: unable to find element with selector of: ${appSettings.gameBoardSelector}`);
-      // @debug end
+      // #endregion debug
       return;
     }
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
   private injectButton(): void {
     const divBtnHolder: JQuery<HTMLElement> = $(appSettings.buttonPlacementSelector);
@@ -73,12 +73,12 @@ export class Fullscreen {
     return btnDiv;
   }
   private addBtnClick(): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'addBtnClick';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-    // @debug end
+    // #endregion debug
     const intTick = new IntervalManual(500, 30);
     intTick.onTick().subscribe((): void => {
       const divBtn: JQuery<HTMLElement> = $(`#${appSettings.buttonId}`);
@@ -89,15 +89,15 @@ export class Fullscreen {
       Log.message(`Found button ${appSettings.buttonId} on try ${intTick.count}`);
       intTick.dispose();
       divBtn.on('click', (): void => {
-        // @debug start
+        // #region [debug]
         Log.message('Button onclick fired');
-        // @debug end
+        // #endregion debug
         const jqGameBoard = $(appSettings.gameBoardSelector);
 
         if (jqGameBoard.length !== 1) {
-          // @debug start
+          // #region [debug]
           Log.debugWarn(`${methodName}: unable to find element with selector of: ${appSettings.gameBoardSelector}`);
-          // @debug end
+          // #endregion debug
           return;
         }
         jqGameBoard.wrap(this.getGameWrapper());
@@ -120,17 +120,17 @@ export class Fullscreen {
       Log.warn(`Unable to find button ${appSettings.buttonId}`);
     });
     intTick.start();
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-// @debug end
+// #endregion debug
   }
   private addDoucmentEvent(): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'addDoucmentEvent';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-    // @debug end
+    // #endregion debug
     if (document.fullscreenEnabled) {
       document.addEventListener('fullscreenchange', this.fullScreenChange);
     } else if ((document as any).webkitExitFullscreen) {
@@ -140,18 +140,18 @@ export class Fullscreen {
     } else if ((document as any).msRequestFullscreen) {
       document.addEventListener('MSFullscreenChange', this.fullScreenChange);
     }
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
 
   private fullScreenChange = (): void => {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'fullScreenChange';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-    // @debug end
+    // #endregion debug
     if (document.fullscreenEnabled ||
       (document as any).webkitIsFullScreen ||
       (document as any).mozFullScreen ||
@@ -159,17 +159,17 @@ export class Fullscreen {
       this.inFullScreen = !this.inFullScreen;
       this.toggleClass();
       this.toggleDisplay();
-      // @debug start
+      // #region [debug]
       if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: In Fullscreen`); }
-      // @debug end
+      // #endregion debug
     } else {
-      // @debug start
+      // #region [debug]
       if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Not in Fullscreen`); }
-      // @debug end
+      // #endregion debug
     }
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
   private getGameWrapper(): HTMLElement {
     const htmlArgs: IElementCreate = {
@@ -198,24 +198,24 @@ export class Fullscreen {
     return result;
   }
   private toggleClass(): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'toggleClass';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-    // @debug end
+    // #endregion debug
     const elBoard = $(appSettings.gameBoardSelector);
     if (elBoard.length !== 1) {
-      // @debug start
+      // #region [debug]
       Log.debugWarn(`${methodName}: unable to find ${this.lWrapDivId}`);
-      // @debug end
+      // #endregion debug
       return;
     }
     if (this.inFullScreen === false) {
       elBoard.unwrap();
     }
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
 }

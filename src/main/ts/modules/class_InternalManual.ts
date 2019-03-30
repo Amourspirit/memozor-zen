@@ -28,33 +28,33 @@ export class IntervalManual extends Interval implements IIntervalManual {
    * Calling this method on an instance more than once has no effect.
    */
   public start(): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'IntervalManual.start';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-    // @debug end
+    // #endregion debug
     if (this.isStarted === true) {
       return;
     }
     this.lIsStarted = true;
     super.startInterval();
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
   public dispose(): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'IntervalManual.dispose';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-    // @debug end
+    // #endregion debug
     this.lIsStarted = false;
     super.dispose();
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
   /**
    * Readonly property that gets if the start method has been called.

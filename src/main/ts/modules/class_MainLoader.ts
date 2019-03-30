@@ -11,19 +11,19 @@ import './ext';
 export class MainElementLoader extends ElementLoader {
 
   protected onBeforeStart(args: IEventArgs): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'onBeforeStart';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-    // @debug end
+    // #endregion debug
     if (args.cancel === true) {
       return;
     }
     this.addStyleCss();
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
  /*  private testForResource(key: string, timing: number = 500, attempts: number = 30, ...globalRes: string[]) {
     if (this.hasElement(key)) {
@@ -35,16 +35,16 @@ export class MainElementLoader extends ElementLoader {
   } */
   // #region Style css
   private addStyleCss(): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'addStyleCss';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Entered`); }
-    // @debug end
+    // #endregion debug
     this.addStyle('styleCss', this.getStyleCss(), ElementLocation.head);
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
   private getStyleCss(): string {
     const css = '// BUILD_INCLUDE("./scratch/css/style.min.css")';
@@ -52,7 +52,7 @@ export class MainElementLoader extends ElementLoader {
   }
   //  #end Style css
  /*  private _addStyleLink(key: string, srcLink: string, elementLocation: ElementLocation = ElementLocation.head): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'EvernoteElementLoader.addStyleLink';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
@@ -60,7 +60,7 @@ export class MainElementLoader extends ElementLoader {
       Log.debug(`${methodName}: Entered`);
       Log.debug(`${methodName}: Adding Csslink for key: ${key} and src ${srcLink}`);
     }
-    // @debug end
+    // #endregion debug
     const elCss = new ElementLoad({
       scriptLocation: elementLocation,
       elementCreate: {
@@ -73,13 +73,13 @@ export class MainElementLoader extends ElementLoader {
       }
     });
     this.addElement(key, elCss);
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   } */
 
   private addStyle(key: string, styelcontent: string, elementLocation: ElementLocation = ElementLocation.head): void {
-    // @debug start
+    // #region [debug]
     const methodName: string = 'EvernoteElementLoader.addStyle';
     const appDebugLevel = appSettings.debugLevel;
     const levelDebug = DebugLevel.debug;
@@ -87,7 +87,7 @@ export class MainElementLoader extends ElementLoader {
       Log.debug(`${methodName}: Entered`);
       Log.debug(`${methodName}: Adding Csslink for key: ${key}`);
     }
-    // @debug end
+    // #endregion debug
     const elCss = new ElementLoad({
       scriptLocation: elementLocation,
       elementCreate: {
@@ -99,8 +99,8 @@ export class MainElementLoader extends ElementLoader {
       }
     });
     this.addElement(key, elCss);
-    // @debug start
+    // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.debug(`${methodName}: Leaving`); }
-    // @debug end
+    // #endregion debug
   }
 }
