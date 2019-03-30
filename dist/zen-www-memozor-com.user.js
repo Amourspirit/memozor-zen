@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Zen for www.memozor.com games
 // @namespace       https://github.com/Amourspirit/memozor-zen
-// @version         1.1.1
+// @version         1.1.2
 // @description     Userscript that allows clean fullscreen game play at memozor.com
 // @author          Paul Moss
 // @run-at          document-end
@@ -43,10 +43,10 @@
     })(ElementLocation || (ElementLocation = {}));
 
     var appSettings = {
+        debugLevel: DebugLevel.none,
         buttonId: 'fsmc-btn',
         shortName: 'fsmc',
         preKey: 'fsmc_',
-        debugLevel: DebugLevel.none,
         gameBoardSelector: 'div#game',
         buttonPlacementSelector: 'body',
         controlSelector: 'div#control'

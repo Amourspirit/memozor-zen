@@ -11,10 +11,14 @@ export interface IappSettings {
 }
 
 export const appSettings: IappSettings = {
+  // #region [BUILD_REMOVE]
+  // this next line will be deleted during grunt and replaced by debugLevel generated from package.json
+  debugLevel: DebugLevel.debug,
+  // #endregion BUILD_REMOVE
+  // BUILD_INCLUDE('./scratch/text/debug_level.txt')
   buttonId: 'fsmc-btn',
   shortName: 'fsmc',
   preKey: 'fsmc_',
-  debugLevel: DebugLevel.none,
   gameBoardSelector: 'div#game',
   buttonPlacementSelector: 'body',
   controlSelector: 'div#control'
