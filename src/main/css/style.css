@@ -74,20 +74,9 @@
   border-style: solid;
   border-color: transparent transparent transparent #272822;
 }
+/* .mem-fs-game style just for memory games */
 .mem-fs-game {
   background-color: #8d6b15;
-}
-/* Girds of black squares, abacus-games, grids-of-pictures, sight-word-games */
-.mem-fs-game-gobs {
-  background-color: #e0d7e3;
-}
-/* simon-games */
-.mem-fs-game-sg {
-  background-color: #000000;
-}
-/* sight-word-games */
-.mem-fs-game-swg {
-  background-color: #ede8ee;
 }
 .mem-fs-no-sel {
   -webkit-user-select: none;

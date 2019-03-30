@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Zen for www.memozor.com games
 // @namespace       https://github.com/Amourspirit/memozor-zen
-// @version         1.1.4
+// @version         1.1.5
 // @description     Userscript that allows clean fullscreen game play at memozor.com
 // @author          Paul Moss
 // @run-at          document-end
@@ -1224,7 +1224,7 @@
             this.addStyle('styleCss', this.getStyleCss(), ElementLocation.head);
         };
         MainElementLoader.prototype.getStyleCss = function () {
-            var css = '.mem-fs-button::after{content:"";background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAACk0lEQVR42mNgGAWjYBSMUFAlx8RQI69IJJanyK5qOS4S7BIjzfAaeVmGFbr/icYLtH4zNClmkOyJXpXjDEt1iLdnktp92noEhGdqfCTJjnoFV5LtoItHpqu/JcmOOnnzgfXIciBerP0PBc/QeA8MYTeSk1aH8mKGeVo/UcxaovOPfh5pVeqhSSEDyvhT1B7TL2nRwjMQTzyhbdICOXyZDu08g8sT6CUaxR4BpdtWpS6aeAaXJ+Zq/mBoV5pLfY+AALU9g88TtfJaDC2KDbTxCH7P9FHVEyBABY9IoxiwGMkj+DzTrFhOtB2T1O7h9QRVPAICoGYHzIAZGh8w5LF5ZqbGJ7JrdXRPYFPXrbKHdI80KiSBPTBd/Q3YQGygVakbxTNT1V8SZXatvCE4BvF5AgbalRYyzNb8yjBR9SZDtbwI7VrKTYrF4HbWVPUXwGaHPdH62pQmMczS+AxMLneBntAY7XKMglEwCkbBKBgFgwY0KIQCa3UbElu/LOBmEK6mCZUdGAJsZznjbYpPVnsAb/22K80j0hNs4AELWC8Q1GbDrZYH6OEU8j3cp3oW3qjrVN5AVH9ituY3IhuksUR1zqrl+BhmaX6B94lAMUhyp2c52kgiMZ2iycAREOJavzoY/XFsnmlSLERRM0H1OvV6iPh7dsS3YonpNtOsq0tM95QUQMgzNPEItT1BjGdo4hFaeIKQZyaq3ab9IDa1PIHPMzQfMqW2J4j1DFU9ArKoQ3kleBwLgnuAlaYHmQN0fMAitgDJrD6wYwd0fqRDeRmJnmADDx8NuokeYmt1RPMnfHDOWE1Uu0myHfgmdajiEdBAGKi5QRx+BBwB3EXW4BkoVvpVLxNtV6fy2tGuxigYBaNg+AAAZ7k6IXnaMaQAAAAASUVORK5CYII=);background-size:cover;opacity:.4;top:0;left:0;bottom:0;right:0;position:absolute;z-index:100;-webkit-filter:grayscale(1);filter:grayscale(1)}.mem-fs-button-parent{width:50px;height:50px;position:fixed;top:10px;right:10px;z-index:101}.mem-fs-button{position:absolute;top:0;left:0;right:0;bottom:0}.mem-fs-button:hover{cursor:pointer;opacity:1;filter:grayscale(0);-webkit-filter:grayscale(0);-webkit-filter:drop-shadow(4px 4px 4px #d107c0);filter:drop-shadow(4px 4px 4px #d107c0)}.mem-fs-button:hover::after{content:"";cursor:pointer;opacity:1;filter:grayscale(0);-webkit-filter:grayscale(0)}.mem-fs-button-parent .mem-fs-btntooltip{visibility:hidden;width:120px;background-color:#272822;color:#fff;text-align:center;border-radius:6px;padding:5px 0;position:absolute;z-index:1;top:2px;right:105%;opacity:0;transition:opacity 1s}.mem-fs-button-parent:hover .mem-fs-btntooltip{visibility:visible;opacity:1}.mem-fs-button-parent .mem-fs-btntooltip::after{content:"";position:absolute;top:50%;left:100%;margin-top:-5px;border-width:5px;border-style:solid;border-color:transparent transparent transparent #272822}.mem-fs-game{background-color:#8d6b15}.mem-fs-game-gobs{background-color:#e0d7e3}.mem-fs-game-sg{background-color:#000}.mem-fs-game-swg{background-color:#ede8ee}.mem-fs-no-sel{-webkit-user-select:none;user-select:none;-o-user-select:none;-webkit-touch-callout:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none}.mem-fs-wrap-ctl{background-color:brown}div.mem-fs-ctl{display:block;width:100%;text-align:center}div#mem-fs-game-wrap div#game{border:0!important}div#mem-ctl-wrap div.mem-fs-ctl{display:inline-block;margin:0 0 10px 0}div.mem-fs-toggle-ctl{display:inline-block;width:100%;text-align:center}div.mem-fs-div-tog{display:inline-block}div.mem-fs-div-tog:hover{cursor:pointer}i.mem-fs-tog{border:solid #000;border-width:0 3px 3px 0;display:inline-block;padding:3px}i.mem-fs-tog.right{transform:rotate(-45deg);-webkit-transform:rotate(-45deg)}i.mem-fs-tog.left{transform:rotate(135deg);-webkit-transform:rotate(135deg)}i.mem-fs-tog.up{transform:rotate(-135deg);-webkit-transform:rotate(-135deg)}i.mem-fs-tog.down{transform:rotate(45deg);-webkit-transform:rotate(45deg)}';
+            var css = '.mem-fs-button::after{content:"";background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAACk0lEQVR42mNgGAWjYBSMUFAlx8RQI69IJJanyK5qOS4S7BIjzfAaeVmGFbr/icYLtH4zNClmkOyJXpXjDEt1iLdnktp92noEhGdqfCTJjnoFV5LtoItHpqu/JcmOOnnzgfXIciBerP0PBc/QeA8MYTeSk1aH8mKGeVo/UcxaovOPfh5pVeqhSSEDyvhT1B7TL2nRwjMQTzyhbdICOXyZDu08g8sT6CUaxR4BpdtWpS6aeAaXJ+Zq/mBoV5pLfY+AALU9g88TtfJaDC2KDbTxCH7P9FHVEyBABY9IoxiwGMkj+DzTrFhOtB2T1O7h9QRVPAICoGYHzIAZGh8w5LF5ZqbGJ7JrdXRPYFPXrbKHdI80KiSBPTBd/Q3YQGygVakbxTNT1V8SZXatvCE4BvF5AgbalRYyzNb8yjBR9SZDtbwI7VrKTYrF4HbWVPUXwGaHPdH62pQmMczS+AxMLneBntAY7XKMglEwCkbBKBgFgwY0KIQCa3UbElu/LOBmEK6mCZUdGAJsZznjbYpPVnsAb/22K80j0hNs4AELWC8Q1GbDrZYH6OEU8j3cp3oW3qjrVN5AVH9ituY3IhuksUR1zqrl+BhmaX6B94lAMUhyp2c52kgiMZ2iycAREOJavzoY/XFsnmlSLERRM0H1OvV6iPh7dsS3YonpNtOsq0tM95QUQMgzNPEItT1BjGdo4hFaeIKQZyaq3ab9IDa1PIHPMzQfMqW2J4j1DFU9ArKoQ3kleBwLgnuAlaYHmQN0fMAitgDJrD6wYwd0fqRDeRmJnmADDx8NuokeYmt1RPMnfHDOWE1Uu0myHfgmdajiEdBAGKi5QRx+BBwB3EXW4BkoVvpVLxNtV6fy2tGuxigYBaNg+AAAZ7k6IXnaMaQAAAAASUVORK5CYII=);background-size:cover;opacity:.4;top:0;left:0;bottom:0;right:0;position:absolute;z-index:100;-webkit-filter:grayscale(1);filter:grayscale(1)}.mem-fs-button-parent{width:50px;height:50px;position:fixed;top:10px;right:10px;z-index:101}.mem-fs-button{position:absolute;top:0;left:0;right:0;bottom:0}.mem-fs-button:hover{cursor:pointer;opacity:1;filter:grayscale(0);-webkit-filter:grayscale(0);-webkit-filter:drop-shadow(4px 4px 4px #d107c0);filter:drop-shadow(4px 4px 4px #d107c0)}.mem-fs-button:hover::after{content:"";cursor:pointer;opacity:1;filter:grayscale(0);-webkit-filter:grayscale(0)}.mem-fs-button-parent .mem-fs-btntooltip{visibility:hidden;width:120px;background-color:#272822;color:#fff;text-align:center;border-radius:6px;padding:5px 0;position:absolute;z-index:1;top:2px;right:105%;opacity:0;transition:opacity 1s}.mem-fs-button-parent:hover .mem-fs-btntooltip{visibility:visible;opacity:1}.mem-fs-button-parent .mem-fs-btntooltip::after{content:"";position:absolute;top:50%;left:100%;margin-top:-5px;border-width:5px;border-style:solid;border-color:transparent transparent transparent #272822}.mem-fs-game{background-color:#8d6b15}.mem-fs-no-sel{-webkit-user-select:none;user-select:none;-o-user-select:none;-webkit-touch-callout:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none}.mem-fs-wrap-ctl{background-color:brown}div.mem-fs-ctl{display:block;width:100%;text-align:center}div#mem-fs-game-wrap div#game{border:0!important}div#mem-ctl-wrap div.mem-fs-ctl{display:inline-block;margin:0 0 10px 0}div.mem-fs-toggle-ctl{display:inline-block;width:100%;text-align:center}div.mem-fs-div-tog{display:inline-block}div.mem-fs-div-tog:hover{cursor:pointer}i.mem-fs-tog{border:solid #000;border-width:0 3px 3px 0;display:inline-block;padding:3px}i.mem-fs-tog.right{transform:rotate(-45deg);-webkit-transform:rotate(-45deg)}i.mem-fs-tog.left{transform:rotate(135deg);-webkit-transform:rotate(135deg)}i.mem-fs-tog.up{transform:rotate(-135deg);-webkit-transform:rotate(-135deg)}i.mem-fs-tog.down{transform:rotate(45deg);-webkit-transform:rotate(45deg)}';
             return css;
         };
         MainElementLoader.prototype.addStyle = function (key, styelcontent, elementLocation) {
@@ -1248,6 +1248,7 @@
             var _this = this;
             this.inFullScreen = false;
             this.lWrapDivId = 'mem-fs-game-wrap';
+            this.lIsMemoryGame = false;
             this.fullScreenChange = function () {
                 if (document.fullscreenEnabled ||
                     document.webkitIsFullScreen ||
@@ -1262,6 +1263,11 @@
             };
         }
         Fullscreen.prototype.init = function () {
+            var href = window.location.href;
+            var rx = /https?:\/\/(?:www\.)?memozor\.com\/memory-game-online-free\/.*/;
+            if (rx.test(href)) {
+                this.lIsMemoryGame = true;
+            }
             this.addDoucmentEvent();
             this.injectButton();
             this.addBtnClick();
@@ -1363,29 +1369,27 @@
                 tag: 'div',
                 attribs: {
                     id: this.lWrapDivId,
-                    class: "mem-fs-no-sel " + this.getWrapperBgClass()
+                    class: ("mem-fs-no-sel " + this.getWrapperBgClass()).trimRight()
                 }
             };
+            if (this.lIsMemoryGame === false) {
+                if (htmlArgs.attribs) {
+                    htmlArgs.attribs.style = this.getWrapperBgStyle();
+                }
+            }
             return elementsCreate(htmlArgs);
         };
+        Fullscreen.prototype.getWrapperBgStyle = function () {
+            var gb = $(appSettings.gameBoardSelector);
+            var c = gb.css('background-color');
+            var style = "background-color:" + c + ";";
+            return style;
+        };
         Fullscreen.prototype.getWrapperBgClass = function () {
-            var loc = window.location.href;
-            var result;
-            if (loc.includes('grids-of-black-squares')
-                || loc.includes('abacus-games')
-                || loc.includes('grids-of-pictures')) {
-                result = 'mem-fs-game-gobs';
+            if (this.lIsMemoryGame === false) {
+                return '';
             }
-            else if (loc.includes('simon-games')) {
-                result = 'mem-fs-game-sg';
-            }
-            else if (loc.includes('sight-word-games')) {
-                result = 'mem-fs-game-swg';
-            }
-            else {
-                result = 'mem-fs-game';
-            }
-            return result;
+            return 'mem-fs-game';
         };
         Fullscreen.prototype.toggleClass = function () {
             var elBoard = $(appSettings.gameBoardSelector);

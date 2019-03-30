@@ -11,7 +11,13 @@ import { IElementCreate } from './interfaces';
 export class Fullscreen {
   protected inFullScreen: boolean = false;
   private lWrapDivId: string = 'mem-fs-game-wrap';
+  private lIsMemoryGame: boolean = false;
   public init(): void {
+    const href = window.location.href;
+    const rx: RegExp = /https?:\/\/(?:www\.)?memozor\.com\/memory-game-online-free\/.*/;
+    if (rx.test(href)) {
+      this.lIsMemoryGame = true;
+    }
     this.addDoucmentEvent();
     this.injectButton();
     this.addBtnClick();
@@ -176,26 +182,27 @@ export class Fullscreen {
       tag: 'div',
       attribs: {
         id: this.lWrapDivId,
-        class: `mem-fs-no-sel ${this.getWrapperBgClass()}`
+        class: `mem-fs-no-sel ${this.getWrapperBgClass()}`.trimRight()
       }
     };
+    if (this.lIsMemoryGame === false) {
+      if (htmlArgs.attribs) {
+        htmlArgs.attribs.style = this.getWrapperBgStyle();
+      }
+    }
     return elementsCreate(htmlArgs);
   }
+  private getWrapperBgStyle(): string {
+    const gb = $(appSettings.gameBoardSelector);
+    const c: string = gb.css('background-color');
+    const style = `background-color:${c};`;
+    return style;
+  }
   private getWrapperBgClass(): string {
-    const loc: string = window.location.href;
-    let result: string;
-    if (loc.includes('grids-of-black-squares')
-      || loc.includes('abacus-games')
-      || loc.includes('grids-of-pictures')) {
-      result = 'mem-fs-game-gobs';
-    } else if (loc.includes('simon-games')) {
-      result = 'mem-fs-game-sg';
-    } else if (loc.includes('sight-word-games')) {
-      result = 'mem-fs-game-swg';
-    } else {
-      result = 'mem-fs-game';
+    if (this.lIsMemoryGame === false) {
+      return '';
     }
-    return result;
+    return 'mem-fs-game';
   }
   private toggleClass(): void {
     // #region [debug]
