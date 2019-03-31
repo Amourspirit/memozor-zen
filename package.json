@@ -9,7 +9,9 @@
   "description": "Userscript that allows clean fullscreen game play at memozor.com",
   "main": "TinyMce_for_Evernote.user.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "grunt",
+    "format": "prettier --write \"dist/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -40,6 +42,7 @@
     "ajv": "latest",
     "awesome-typescript-loader": "latest",
     "depcheck": "latest",
+    "element-helper-lite": "^0.2.1",
     "grunt": "latest",
     "grunt-contrib-clean": "latest",
     "grunt-contrib-concat": "latest",
@@ -55,6 +58,7 @@
     "grunt-zip": "latest",
     "jquery": "^3.3.1",
     "load-grunt-tasks": "latest",
+    "prettier": "^1.16.4",
     "rollup": "latest",
     "rollup-plugin-commonjs": "latest",
     "rollup-plugin-inject": "^2.2.0",

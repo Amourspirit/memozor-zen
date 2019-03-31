@@ -4,8 +4,7 @@ import { appSettings } from './appSettings';
 import { DebugLevel } from './enums';
 import { IntervalManual } from './class_InternalManual';
 import $ from 'jquery';
-import { elementsCreate } from './ElementHelper';
-import { IElementCreate } from './interfaces';
+import { IElementCreate, elementsCreate } from 'element-helper-lite';
 // import * as jQ from 'jquery';
 // see: https://stackoverflow.com/questions/33768509/how-to-make-an-iframe-to-go-fullscreen-on-a-button-click
 export class Fullscreen {

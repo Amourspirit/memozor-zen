@@ -1,10 +1,14 @@
 import { BaseElementLoad } from './abstract_class_BaseElementLoad';
-import { ElementLocation, DebugLevel } from './enums';
+import { DebugLevel } from './enums';
 import { appSettings } from './appSettings';
 import { Log } from './class_Log';
 import { IIntervalEventArgs } from './class_IntervalEventArgs';
-import { elementCreate, elementAddToDoc, elementsCreate } from './ElementHelper';
-import { IElementCreate } from './interfaces';
+
+import { IElementCreate,
+  ElLocation,
+  elementAddToDoc,
+  elementsCreate
+} from 'element-helper-lite';
 
 /**
  * Arguments for ElementLoad
@@ -15,7 +19,7 @@ export interface IElementLoadArgs {
   /**
    * The location to inject the script such as head or body.
    */
-  scriptLocation: ElementLocation;
+  scriptLocation: ElLocation;
   /**
    * Elements creation arguments
    */
@@ -70,7 +74,7 @@ export class ElementLoad extends BaseElementLoad {
       const multiHtml: HTMLElement = elementsCreate(this.lArgs.elementCreate);
       elementAddToDoc(multiHtml, this.lArgs.scriptLocation);
     } else {
-      const eHtml: HTMLElement = elementCreate(this.lArgs.elementCreate);
+      const eHtml: HTMLElement = elementsCreate(this.lArgs.elementCreate);
       elementAddToDoc(eHtml, this.lArgs.scriptLocation);
     }
     // now that thte element is added to the document dispatch on script loaded.

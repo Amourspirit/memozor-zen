@@ -110,7 +110,8 @@ module.exports = function (grunt) {
 
     shell: {
       tsc: 'tsc',
-      rollup: 'npx rollup -c'
+      rollup: 'npx rollup -c',
+      prettier: 'npm run format'
     },
 
     remove_comments: {
@@ -370,7 +371,17 @@ module.exports = function (grunt) {
         },
         dest: 'scratch/text/debug_level.txt'
       }
-    }
+    },
+    prettier: {
+      format_js: {
+        options: {
+          singleQuote: true,
+          useTabs: true,
+          progress: true // By default, a progress bar is not shown. You can opt into this behavior by passing true.
+        },
+        src: ["dist/<%= pkg._name %>.user.js"]
+      }
+  }
   });
   require('load-grunt-tasks')(grunt);
   // grunt.loadNpmTasks('@ephox/swag');
@@ -495,7 +506,11 @@ module.exports = function (grunt) {
      * the source file is /src/main/text/Readme.md
      * the dest file is /Readme.md
      */
-    'replace:readme_build'
+    'replace:readme_build',
+    /**
+     * Runs prettier from package.json
+     */
+    'shell:prettier'
   ]);
 };
 /*

@@ -2,8 +2,8 @@ import { Log } from './class_Log';
 import { appSettings } from './appSettings';
 import { DebugLevel } from './enums';
 import $ from 'jquery';
-import { elementsCreate } from './ElementHelper';
-import { IElementCreate } from './interfaces';
+import { elementsCreate, IElementCreate } from 'element-helper-lite';
+// import { IElementCreate } from './interfaces';
 
 export class ControlToggle {
   private lDivWrapId: string = 'mem-ctl-wrap';

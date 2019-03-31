@@ -1,6 +1,7 @@
 import { ElementLoader } from './class_ElementLoader';
 import { ElementLoad } from './class_ElementLoad';
-import { ElementLocation, DebugLevel } from './enums';
+import { DebugLevel } from './enums';
+import { ElLocation } from 'element-helper-lite';
 import { Log } from './class_Log';
 import { appSettings } from './appSettings';
 import { IEventArgs } from './class_EventArgs';
@@ -41,7 +42,7 @@ export class MainElementLoader extends ElementLoader {
     const levelDebug = DebugLevel.debug;
     if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Entered`); }
     // #endregion debug
-    this.addStyle('styleCss', this.getStyleCss(), ElementLocation.head);
+    this.addStyle('styleCss', this.getStyleCss(), ElLocation.head);
     // #region [debug]
     if (appDebugLevel >= levelDebug) { Log.Debug(`${methodName}: Leaving`); }
     // #endregion debug
@@ -78,7 +79,7 @@ export class MainElementLoader extends ElementLoader {
     // #endregion debug
   } */
 
-  private addStyle(key: string, styelcontent: string, elementLocation: ElementLocation = ElementLocation.head): void {
+  private addStyle(key: string, styelcontent: string, elementLocation: ElLocation = ElLocation.head): void {
     // #region [debug]
     const methodName: string = 'EvernoteElementLoader.addStyle';
     const appDebugLevel = appSettings.debugLevel;

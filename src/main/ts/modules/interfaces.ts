@@ -56,31 +56,3 @@ console.log(lst[7]);
 export interface IIndexValueGeneric<T> {
   [index: number]: T;
 }
-
-/**
- * Elements creation arguments
- * @param tag (required) The tag of the element such as div, script, style
- * @param text (optional) The text to add to the element content.
- * @param html (optional) The html to add to the element content.
- * @param attribs (optional) Array of Attributes and values to add to the element.
- * @param children (optional) child elements to add to the current element.
- */
-export interface IElementCreate {
-  /**
-   * The tag of the element such as div, script, style
-   */
-  tag: string;
-  /**
-   * text only to add to the element content.
-   */
-  text?: string;
-  /**
-   * html to add to the element content.
-   */
-  html?: string;
-  /**
-   * Any extra attributes to apply to element such as scrolling
-   */
-  attribs?: IKeyValueGeneric<string>;
-  children?: IElementCreate[];
-}

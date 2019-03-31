@@ -34,23 +34,3 @@ export enum DebugLevel {
   */
   none,
 }
-/**
- * Determins where the element will be loaded
- * @param head Represents the head of the document
- * @param body Represents the body of the document
- * @param other Represents unknow part of the doucment
- */
-export enum ElementLocation {
-  /**
-   * Represents the head of the document
-   */
-  head,
-  /**
-   * Represents the body of the document
-   */
-  body,
-  /**
-   * Represents the unknow part of the document
-   */
-  other
-}
