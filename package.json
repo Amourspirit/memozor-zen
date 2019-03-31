@@ -11,7 +11,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "grunt",
-    "format": "prettier --write \"dist/**/*.js\""
+    "format": "prettier --write \"dist/**/*.js\"",
+    "prepare": "npm run build",
+    "version": "git add .",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
