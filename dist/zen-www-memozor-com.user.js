@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Zen for www.memozor.com games
 // @namespace       https://github.com/Amourspirit/memozor-zen
-// @version         1.1.8
+// @version         1.2.0
 // @description     Userscript that allows clean fullscreen game play at memozor.com
 // @author          Paul Moss
 // @run-at          document-end
@@ -1206,7 +1206,13 @@
 				for (var key in eArgs.attribs) {
 					if (eArgs.attribs.hasOwnProperty(key)) {
 						var value = eArgs.attribs[key];
-						htmlNode.setAttribute(key, value);
+						if (typeof value === "boolean") {
+							if (value === true) {
+								htmlNode.setAttribute(key, "");
+							}
+						} else {
+							htmlNode.setAttribute(key, value.toString());
+						}
 					}
 				}
 			}
@@ -1236,6 +1242,9 @@
 			}
 		};
 		exports.elementAddToDoc = function(el, location) {
+			if (location === void 0) {
+				location = ElLocation.head;
+			}
 			var D = document;
 			var targ;
 			switch (location) {
@@ -1250,11 +1259,14 @@
 					break;
 			}
 			targ.appendChild(el);
+			return el;
 		};
 		exports.elementAddNewToDoc = function(eArgs, location) {
+			if (location === void 0) {
+				location = ElLocation.head;
+			}
 			var el = exports.elementsCreate(eArgs);
-			exports.elementAddToDoc(el, location);
-			return el;
+			return exports.elementAddToDoc(el, location);
 		};
 	});
 
