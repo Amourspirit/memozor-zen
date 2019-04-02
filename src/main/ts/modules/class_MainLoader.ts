@@ -48,7 +48,7 @@ export class MainElementLoader extends ElementLoader {
     // #endregion debug
   }
   private getStyleCss(): string {
-    const css = '// BUILD_INCLUDE("./scratch/css/style.min.css")';
+    const css = '// BUILD_INCLUDE("./scratch/css/style.min.css")[asjsstring, breakString = 100]';
     return css;
   }
   //  #end Style css

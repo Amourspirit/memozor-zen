@@ -1,3 +1,4 @@
+var breakString = require('break-string');
 module.exports = function (grunt) {
   var packageData = grunt.file.readJSON('package.json');
   var BUILD_VERSION = packageData.version + '-' + (process.env.BUILD_NUMBER ? process.env.BUILD_NUMBER : '0');
@@ -67,13 +68,15 @@ module.exports = function (grunt) {
         file = grunt.template.process(match[1]);
         grunt.verbose.writeln("    File to embed: " + file);
         file = grunt.file.read(file);
+        var breakStr = false;
         // If options were set, then parse them
         if (match[2]) {
           fileIncludeOptions = match[2].split(',');
           // If option: asJsString
           if (
             fileIncludeOptions.some(function (option) {
-              return String(option).toLowerCase() === "asjsstring";
+              var asjRx = /\s*asjsstring\s*/i;
+              return asjRx.test(option);
             })
           ) {
             file = file
@@ -81,9 +84,53 @@ module.exports = function (grunt) {
               .replace(/'/g, "\\'")
               .replace(/\r\n|\n/g, "\\n");
           }
+          var bsWidth = 80;
+           if (
+             fileIncludeOptions.some(function (option) {
+               // match breakstring (any case)
+               // match breakstring=# where # is the width to break the string
+               // matches breakstring = #
+               var bsRx = /\s*(breakstring(?:\s*(?:=)\s*(\d+))?)/i, bsMatch;
+               var result = bsRx.test(option);
+               if (result) {
+                 bsMatch = bsRx.exec(option);
+                 if (bsMatch[2]) {
+                   bsWidth = bsMatch[2];
+                 }
+               }
+               return result;
+             })
+           ) {
+             breakStr = true;
+             file = breakString(file, bsWidth -1);
+           }
         }
         fileContent = fileContent.replace(match[0], function () {
-          return file;
+          if (breakStr === true) {
+            var newStr = '\\';
+            var i;
+            var appendToLast = false;
+            for (i = 0; i < file.length; i++) {
+              if (i < (file.length -1)) {
+                newStr += '\n' + file[i] + '\\';
+              } else {
+                if (file[file.length - 1].length < (bsWidth - 3)) {
+                  appendToLast = true;
+                  newStr += '\n' + file[i];
+                } else {
+                  newStr += '\n' + file[i] + '\\';
+                }
+              }
+            }
+           if (appendToLast) {
+             newStr += ';';
+           } else {
+            newStr += '\n;';
+           }
+            return newStr;
+          } else {
+            return file;
+          }
         });
       }
       grunt.log.writeln("");
@@ -381,7 +428,7 @@ module.exports = function (grunt) {
         },
         src: ["dist/<%= pkg._name %>.user.js"]
       }
-  }
+    }
   });
   require('load-grunt-tasks')(grunt);
   // grunt.loadNpmTasks('@ephox/swag');
@@ -508,6 +555,7 @@ module.exports = function (grunt) {
      */
     'replace:readme_build',
     /**
+     * Task shell: prettier
      * Runs prettier from package.json
      */
     'shell:prettier'

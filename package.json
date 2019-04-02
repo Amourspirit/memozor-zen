@@ -5,7 +5,7 @@
   "_fullName": "Zen for www.memozor.com games",
   "_repositoryName": "memozor-zen",
   "name": "memozor-zen",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Userscript that allows clean fullscreen game play at memozor.com",
   "main": "TinyMce_for_Evernote.user.js",
   "scripts": {
@@ -44,6 +44,7 @@
     "@types/jquery": "^3.3.29",
     "ajv": "latest",
     "awesome-typescript-loader": "latest",
+    "break-string": "^1.0.0",
     "depcheck": "latest",
     "element-helper-lite": "^0.2.2",
     "grunt": "latest",
